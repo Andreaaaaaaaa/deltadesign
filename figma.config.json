@@ -1,0 +1,4 @@
+{
+  "parser": "html",
+  "include": ["src/figma/**/*.figma.ts"]
+}
