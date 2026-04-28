@@ -1,0 +1,97 @@
+.t-tabs {
+  background-color: transparent;
+
+  .t-tabs__nav-item.t-is-active::after {
+      content: '';
+      height: 6px;
+      transform-origin: 50% 100% 0;
+      transform: perspective(36px) rotateX(45deg);
+      background-image: linear-gradient(0deg, #202020, #202020);
+      position: absolute;
+      left: 8px;
+      right: 8px;
+      bottom: 0;
+  }
+
+  .t-tabs__nav-item-wrapper {
+      @apply aw-text-black-60;
+
+      // & .t-is-active::after {
+      //   content: '';
+      //   height: 6px;
+      //   transform-origin: 50% 100% 0;
+      //   transform: perspective(36px) rotateX(45deg);
+      //   background-image: linear-gradient(0deg, #d52b2d, #ff6157);
+      //   position: absolute;
+      //   left: 20px;
+      //   right: 20px;
+      //   bottom: 0;
+      // }
+  }
+
+  .t-tabs__bar.t-is-top {
+      display: none;
+      // }
+      // .t-tabs__nav-item-text-wrapper::after {
+      // position: static;
+      // width: 4px;
+      // left: calc(50% - 4px / 2 - 30px);
+      // top: 100%;
+      // bottom: -1600%;
+
+      /* 文本色/black-100-强调 正文（100% ） */
+
+      background: #202020;
+      // transform: rotate(-90deg);
+
+      /* Inside auto layout */
+
+      flex: none;
+      order: 0;
+      align-self: stretch;
+      flex-grow: 0;
+      margin: 0 0;
+  }
+
+  .t-is-active .t-tabs__nav-item-text-wrapper {
+      color: rgba(32, 32, 32, 1);
+  }
+
+  // 大tab
+  .t-tabs__nav-item.t-size-l {
+      font-size: 14px;
+      height: 60px;
+      line-height: 60px;
+
+      .t-tabs__nav-item-wrapper div:last-child {
+          display: none;
+      }
+  }
+
+  // 中tab
+  .t-tabs__nav-item.t-size-m {
+      .t-tabs__nav-item-wrapper div:last-child {
+          display: none;
+      }
+  }
+
+  // 常规型hover状态
+  .t-tabs__nav-item:not(.t-is-disabled):not(.t-is-active):hover .t-tabs__nav-item-wrapper {
+      background-color: transparent;
+
+      .t-tabs__nav-item-text-wrapper {
+          color: rgba(32, 32, 32, 1);
+      }
+  }
+
+  // 卡片型hover状态
+  .t-tabs__nav-item.t-tabs__nav--card:not(.t-is-disabled):not(.t-is-active):hover {
+
+      background-color: transparent;
+
+      .t-tabs__nav-item-text-wrapper {
+          color: rgba(32, 32, 32, 1);
+      }
+  }
+
+}

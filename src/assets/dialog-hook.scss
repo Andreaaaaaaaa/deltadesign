@@ -1,0 +1,47 @@
+// 全局样式使用
+.t-dialog--default {
+    @apply aw-p-6 aw-rounded-xl;
+
+    .t-dialog__header {
+        @apply aw-font-medium;
+
+        .t-icon {
+            @apply aw-text-xl aw-mr-[6px];
+        }
+
+        &.t-is-info {
+            color: #2e8cfa;
+        }
+    }
+
+    .t-dialog__close {
+        color: var(--td-brand-color);
+    }
+
+    .t-dialog__body {
+        @apply aw-pt-3 aw-leading-5;
+
+        &__icon {
+            color: var(--td-text-color-secondary);
+
+            @apply aw-pt-3 aw-pl-[26px] ;
+        }
+
+        .aw-overflow-hidden {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+
+            &.aw-clamp-2 {
+                -webkit-line-clamp: 2;
+            }
+
+            &.aw-clamp-3 {
+                -webkit-line-clamp: 3;
+            }
+        }
+    }
+}
+
+.t-dialog__ctx .t-dialog--top {
+    top: 140px;
+}

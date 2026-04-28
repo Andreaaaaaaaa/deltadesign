@@ -1,0 +1,266 @@
+// 全局样式使用
+
+
+.t-button {
+  @apply aw-rounded-full aw-border-0 aw-px-4;
+
+  &.t-size-s {
+    @apply aw-px-3;
+  }
+
+  &.t-size-l {
+    @apply aw-px-6;
+  }
+}
+
+.t-button--variant-base {
+  @apply aw-rounded-full aw-px-4;
+}
+
+.t-button--shape-circle {
+  @apply aw-p-0;
+}
+
+.t-button--variant-dashed {
+  @apply aw-rounded-full aw-border;
+}
+
+.t-button--variant-base.t-button--theme-primary:active {
+  background-color: var(--td-brand-color-active);
+}
+
+.t-button--variant-base.t-button--theme-danger:active {
+  @apply aw-bg-error-70 aw-border-error-70;
+}
+
+.t-button--variant-outline {
+  @apply aw-rounded-full aw-border aw-border-gray-40 aw-text-black-100 aw-bg-white aw-px-4;
+
+  &:not(.t-is-disabled){
+    &:hover {
+      color: var(--td-brand-color-hover);
+
+      @apply aw-bg-gray-50/30 aw-border-gray-40;
+    }
+
+    // &:focus {
+    //   color: var(--td-brand-color-active);
+
+    //   @apply aw-bg-gray-50/30 aw-border-gray-40;
+    // }
+
+    &:active {
+      color: var(--td-brand-color-active);
+
+      @apply aw-bg-gray-50/50 aw-border-gray-40;
+    }
+
+  }
+}
+
+.t-button--variant-outline.t-button--theme-primary {
+  @apply aw-rounded-full aw-border aw-border-gray-40 aw-text-black-100 aw-bg-white;
+
+  &:not(.t-is-disabled){
+    &:hover {
+      color: var(--td-brand-color-hover);
+
+      @apply aw-bg-gray-50/30 aw-border-gray-40;
+    }
+
+    // &:focus {
+    //   color: var(--td-brand-color-active);
+
+    //   @apply aw-bg-gray-50/30 aw-border-gray-40;
+    // }
+
+    &:active {
+      color: var(--td-brand-color-active);
+
+      @apply aw-bg-gray-50/50 aw-border-gray-40;
+    }
+  }
+}
+
+.t-button--variant-outline.t-button--theme-danger {
+  @apply aw-rounded-full aw-border aw-border-error-60 aw-text-error-60 aw-bg-white;
+
+  &:not(.t-is-disabled){
+    &:hover {
+      @apply aw-bg-error-10 aw-border-error-50 aw-text-error-60;
+    }
+
+    // &:focus {
+    //   @apply aw-bg-brand-10 aw-border-error-60 aw-text-error-60;
+    // }
+
+    &:active {
+      @apply aw-bg-brand-10 aw-border-error-60 aw-text-error-60;
+    }
+  }
+}
+
+.t-button--variant-outline.t-button--theme-success {
+  @apply aw-rounded-full aw-border aw-border-success-60 aw-text-success-60 aw-bg-white;
+
+  &:not(.t-is-disabled){
+    &:hover {
+      @apply aw-bg-success-10 aw-border-success-50 aw-text-success-60;
+    }
+
+    // &:focus {
+    //   @apply aw-bg-success-10 aw-border-success-60 aw-text-success-60;
+    // }
+
+    &:active {
+      @apply aw-bg-success-10 aw-border-success-60 aw-text-success-60;
+    }
+  }
+}
+
+.t-button--variant-outline.t-button--theme-warning {
+  @apply aw-rounded-full aw-border aw-border-warning-60 aw-text-warning-60 aw-bg-white;
+
+  &:not(.t-is-disabled){
+    &:hover {
+      @apply aw-bg-warning-10 aw-border-warning-50 aw-text-warning-60;
+    }
+
+    // &:focus {
+    //   @apply aw-bg-warning-10 aw-border-warning-60 aw-text-warning-60;
+    // }
+
+    &:active {
+      @apply aw-bg-warning-10 aw-border-warning-60 aw-text-warning-60;
+    }
+  }
+}
+
+.t-button--variant-text {
+  @apply aw-rounded aw-border-transparent aw-px-1;
+
+  &.t-size-s {
+    @apply aw-px-1;
+  }
+
+  &.t-size-l {
+    @apply aw-px-1;
+  }
+
+  &:not(.t-is-disabled){
+    &:hover {
+      color: var(--td-brand-color-hover);
+      @apply aw-bg-gray-50/30;
+    }
+
+    // &:focus {
+    //   color: var(--td-brand-color-focus);
+    //   @apply aw-bg-gray-50/30;
+    // }
+
+    &:active {
+      color: var(--td-brand-color-active);
+      @apply aw-bg-gray-50/50;
+    }
+  }
+}
+
+.t-button--icon-only,
+.t-button--shape-square,
+.t-button--shape-circle {
+  &.t-size-s,
+  &.t-size-m,
+  &.t-size-l {
+    @apply aw-px-0;
+  }
+}
+
+.t-button--variant-text.t-button--theme-primary {
+  @apply aw-text-gray-100;
+
+  &:not(.t-is-disabled){
+    &:hover {
+      @apply aw-bg-gray-30 aw-text-gray-90;
+    }
+
+    // &:focus {
+    //   @apply aw-bg-gray-30 aw-text-gray-90;
+    // }
+
+    &:active {
+      @apply aw-bg-gray-50 aw-text-gray-100;
+    }
+  }
+}
+
+
+.t-menu__item,
+.t-menu__item *,
+.t-button,
+.t-button * {
+  --ripple-color: none !important;
+}
+
+.aw-button-group-wrap {
+  display: inline-flex;
+  vertical-align: middle;
+  position: relative;
+  overflow: visible;
+}
+
+.aw-group-item {
+  @apply aw-border aw-border-gray-40;
+  svg {
+    @apply aw-opacity-60;
+  }
+  &-active {
+    svg {
+      @apply aw-text-black aw-opacity-100;
+    }
+    @apply aw-border-primary aw-relative;
+    :not(:last-child):after {
+      content: '';
+      top: 0;
+      right: 0;
+      @apply aw-w-px aw-bg-primary aw-absolute;
+    }
+  }
+}
+
+.aw-button-group-wrap > .aw-group-item {
+  flex: 0 1 auto;
+  white-space: nowrap;
+  border-radius: 0;
+  margin-left: -1px;
+  width: 32px;
+  height: 32px;
+  transition: all 0.4s;
+
+  // &.aw-group-item-single {
+  //   border-radius: 4px !important;
+  // }
+}
+
+// 间隔改为业务侧控制
+// .t-button + .t-button {
+//   @apply aw-ml-2;
+// }
+
+// .t-button .t-icon + .t-button__text {
+//   @apply aw-ml-1;
+// }
+
+.aw-button-group-wrap .aw-group-item + .aaw-group-item {
+  margin-left: -1px;
+}
+
+.t-button--variant-base.t-button--theme-primary.t-is-disabled,
+.t-button--variant-base.t-button--theme-danger.t-is-disabled,
+.t-button--variant-base.t-is-disabled {
+  @apply aw-bg-black-30/30 aw-text-white-60;
+}
+
+.t-button--variant-outline.t-button--theme-danger.t-is-disabled,
+.t-button--variant-outline.t-is-disabled {
+  @apply aw-bg-gray-10 aw-border-gray-30 aw-text-black-30;
+}

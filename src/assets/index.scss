@@ -1,0 +1,36 @@
+// 引入组件库全局样式资源
+// @import 'tdesign-vue-next/es/style/index.css';
+// @import "tailwindcss/tailwind";
+@import './variables-hook.scss';
+@import './dialog-hook.scss';
+@import './button-hook.scss';
+@import './menu-hook.scss';
+@import './form-hook.scss';
+@import './date-picker-hook.scss';
+@import './time-picker-hook.scss';
+@import './range-picker-hook.scss';
+@import './radio-hook.scss';
+@import './breadcrumb-hook.scss';
+@import './input-hook.scss';
+@import './input-number-hook.scss';
+@import './tag-hook.scss';
+@import './select-hook.scss';
+@import './steps-hook.scss';
+@import './loading-hook.scss';
+@import './switch-hook.scss';
+@import './tree-hook.scss';
+@import './alert-hook.scss';
+@import './message-hook.scss';
+@import './drawer-hook.scss';
+@import './tabs-hook.scss';
+@import './table-hook.scss';
+@import './tooltip-hook.scss';
+@import './card-hook.scss';
+@import './font-hook.scss';
+@import './pagination-hook.scss';
+@import './popup-confirm.scss';
+@import './upload-hook.scss';
+
+.t-test-again {
+  color: red;
+}

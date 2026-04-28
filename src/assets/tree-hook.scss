@@ -1,0 +1,10 @@
+.t-tree__item.t-tree__item--open {
+  @apply aw-text-black aw-font-medium
+}
+.t-tree__item {
+ @apply aw-text-black
+}
+
+.t-tree__item--open .t-icon {
+  @apply aw-text-black/60
+}

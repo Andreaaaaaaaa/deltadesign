@@ -1,0 +1,97 @@
+.t-demo-message {
+  .t-message,
+  .t-button {
+    margin-bottom: 16px;
+  }
+}
+
+.t-demo-message-duration,
+.t-demo-message-theme,
+#story--请归类-message--close-all {
+  .t-button {
+    margin-right: 12px;
+  }
+}
+
+.placement-demo {
+  .t-button {
+    margin-right: 16px;
+    margin-bottom: 16px;
+  }
+  // .t-message-offset{
+  //   width:130px;
+  // }
+
+  .t-message-offset > .t-input__wrap {
+    width: 130px;
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 36px;
+  }
+
+  .t-message-placement {
+    margin: 0 auto;
+    width: 500px;
+    height: 260px;
+    position: relative;
+  }
+
+  .placement-top {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .placement-top-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .placement-top-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .placement-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .placement-bottom-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  .placement-bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
+  .placement-left {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .placement-right {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .placement-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

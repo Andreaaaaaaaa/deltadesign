@@ -1,0 +1,42 @@
+.t-drawer {
+    .t-drawer__header {
+        border-bottom: 0;
+        @apply aw-font-medium aw-truncate;
+        padding: 24px 32px 20px 24px;
+    }
+    .t-drawer__close-btn {
+      padding-top: 17px;
+      &:hover{
+        @apply aw-bg-transparent;
+      }
+    }
+
+    .t-drawer__body {
+        padding: 0 24px;
+
+        @apply aw-font-normal;
+    }
+
+    .t-drawer__body {
+      @include hook-narrow-scrollbar;
+    }
+
+    .t-drawer__footer {
+        border-top: 0;
+        padding: 24px;
+        display: flex;
+        flex: none;
+        justify-content: flex-end;
+
+        .t-button + .t-button {
+            margin-left: 12px;
+        }
+
+        .t-button--variant-base.t-button--theme-default {
+            border: 1px solid #d1d5e6;
+
+            @apply aw-bg-white;
+            @apply aw-text-primary;
+        }
+    }
+}

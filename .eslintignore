@@ -1,0 +1,4 @@
+# 测试和打包目录
+/test/
+/dist/
+/node_modules/

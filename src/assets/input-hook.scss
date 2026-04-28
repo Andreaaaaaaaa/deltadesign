@@ -1,0 +1,24 @@
+.t-input {
+    border-radius: 4px;
+
+    &.t-is-disabled {
+        border-color: var(--td-gray-color-3);
+    }
+
+    &.t-input--focused {
+        box-shadow: 0 0 0 2px rgba(32, 32, 32, .1);
+
+        &.t-is-error {
+            box-shadow: 0 0 0 2px rgba(252, 77, 66, .1);
+        }
+    }
+
+    &__tips--normal {
+        @apply aw-text-black-60;
+    }
+
+    &.t-size-s {
+        height: 28px;
+        line-height: 28px;
+    }
+}

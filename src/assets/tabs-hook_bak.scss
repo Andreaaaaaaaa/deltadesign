@@ -1,0 +1,131 @@
+.t-tabs {
+    background-color: transparent;
+
+    // 公共样式
+    .t-tabs__nav-item.t-is-active::after {
+        content: '';
+        height: 2px;
+        // transform-origin: 50% 100% 0;
+        // transform: perspective(36px) rotateX(45deg);
+        background-image: linear-gradient(0deg, #202020, #202020);
+        position: absolute;
+        left: 6px;
+        right: 6px;
+        bottom: 0;
+    }
+
+    .t-tabs__bar.t-is-top {
+        display: none;
+    }
+
+    .t-tabs__nav-item-wrapper div:last-child {
+        display: none;
+    }
+
+    .t-is-active .t-tabs__nav-item-text-wrapper {
+        color: rgba(32, 32, 32, 1);
+    }
+
+    .t-tabs__nav-container.t-is-top::after {
+        @apply aw-bg-gray-20
+    }
+
+
+    // 常规尺寸tab
+    .t-tabs__nav-item.t-size-m {
+        height: 44px;
+
+        .t-tabs__nav-item-wrapper {
+            padding: 8px 12px;
+            margin: 0 12px;
+        }
+
+        .t-tabs__nav-item-wrapper div:last-child {
+            display: none;
+        }
+
+        &::after {
+            height: 4px;
+            left: 24px;
+            right: 24px;
+        }
+
+        .t-is-active .t-tabs__nav-item-text-wrapper {
+            font-weight: 500;
+        }
+
+    }
+
+    // 大尺寸tab
+    .t-tabs__nav-item.t-size-l {
+        font-size: 14px;
+        height: 60px;
+        line-height: 60px;
+
+        .t-tabs__nav-item-wrapper div:last-child {
+            display: none;
+        }
+
+        .t-is-active .t-tabs__nav-item-text-wrapper {
+            font-weight: 500;
+        }
+    }
+
+    // 常规型hover状态
+    .t-tabs__nav-item:not(.t-is-disabled):not(.t-is-active):hover .t-tabs__nav-item-wrapper {
+        background-color: transparent;
+
+        .t-tabs__nav-item-text-wrapper {
+            color: rgba(32, 32, 32, 1);
+        }
+    }
+
+    // 卡片型
+    .t-tabs__nav--card.t-tabs__nav-item {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .t-tabs__nav-item.t-tabs__nav--card:not(.t-is-disabled):not(.t-is-active):hover {
+
+        background-color: transparent;
+
+        .t-tabs__nav-item-text-wrapper {
+            color: rgba(32, 32, 32, 1);
+        }
+    }
+
+    // 带图标选项卡
+    .t-icon {
+        margin-right: 4px;
+    }
+
+}
+
+// 小尺寸tab
+.t-size-s {
+    .t-tabs__nav-container.t-is-top::after {
+        display: none;
+    }
+
+    .t-tabs__nav-item {
+        height: 32px;
+
+        .t-is-active .t-tabs__nav-item-text-wrapper {
+            color: #202020;
+        }
+
+        .t-tabs__nav-item-text-wrapper {
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 18px;
+            text-align: center;
+        }
+
+        .t-tabs__nav-item-wrapper {
+            // @apply aw-text-black-60;
+            padding: 7px 4px;
+            margin: 0 2px;
+        }
+    }
+}

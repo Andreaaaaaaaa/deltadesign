@@ -1,0 +1,79 @@
+.t-card {
+  border-radius: 12px;
+}
+
+.t-card--bordered {
+  border: 1px solid #E8EAF1
+}
+
+.t-card--bordered.t-card--interface {
+  background: #F6F8FA;
+  border-radius: 16px;
+  border: 2px solid #465364;
+}
+
+.t-card__actions {
+  color: #066CE5;
+}
+
+$largeCardPadding: 20px 20px 16px 20px;
+.t-card.t-card--padding-l  {
+  .t-card__body {
+    padding: $largeCardPadding;
+  }
+  .t-card__header {
+    padding: 20px 20px 0px 20px;
+  }
+  .t-card__title {
+    font-weight: 500;
+  }
+  .t-card__footer {
+    padding: $largeCardPadding;
+  }
+  
+  .t-card__header + .t-card__body {
+    padding-top: 0;
+  }
+
+  .t-card__filter {
+    margin-top: 12px;
+    height: 24px;
+  }
+
+  .t-card__chart {
+    margin-top: 16px;
+    height: 354px;
+  }
+}
+
+$smallCardPadding: 16px 20px;
+.t-card.t-card--padding-s  {
+  height: 336px;
+  .t-card__body {
+    padding: $smallCardPadding;
+  }
+  .t-card__header {
+    padding: 16px 20px 0px;
+  }
+  .t-card__title {
+    font-weight: 500;
+  }
+  .t-card__footer {
+    padding: $smallCardPadding;
+  }
+  
+  .t-card__header + .t-card__body {
+    padding-top: 0;
+  }
+  .t-card__filter {
+    margin-top: 16px;
+  }
+
+  .t-card__chart {
+    margin-top: 12px;
+  }
+  .t-card__category_date {
+    margin-top: 12px;
+  }
+}
+

@@ -1,0 +1,19 @@
+.t-switch.t-size-s {
+    min-width: 32px;
+}
+
+.t-switch.t-size-l {
+    min-width: 48px;
+}
+
+.t-switch.t-size-m {
+    min-width: 40px;
+    line-height: 20px;
+    border-radius: 10px;
+
+    @apply aw-h-5;
+}
+
+.t-switch.t-is-loading.t-is-checked {
+    @apply aw-bg-black-100;
+}

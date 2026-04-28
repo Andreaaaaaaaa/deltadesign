@@ -1,0 +1,47 @@
+// 全局样式使用
+
+.t-is-focused,
+.t-input--focused {
+    box-shadow: none;
+}
+
+.t-textarea__inner {
+    @apply aw-font-sans;
+}
+
+.t-textarea__inner:focus {
+    box-shadow: none;
+}
+
+.t-is-error .t-textarea__inner {
+    border-color: var(--td-error-color);
+}
+
+.t-is-error .t-is-focused {
+    // box-shadow: 0 0 0 2px var(--td-error-color-focus);
+    box-shadow: none;
+}
+
+.t-form__item:not(.aw-mb-1) {
+    @apply aw-mb-4;
+}
+
+.t-form__item {
+    .t-form__label {
+        padding-right: 12px;
+
+        &--top {
+            min-height: 20px;
+
+            @apply aw-leading-5 aw-pb-1;
+        }
+    }
+}
+
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}

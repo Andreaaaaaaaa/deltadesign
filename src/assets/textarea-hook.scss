@@ -1,0 +1,12 @@
+.t-textarea__inner {
+    color: var(--td-text-color-primary);
+    border-radius: 4px;
+
+    &.t-is-disabled {
+        border-color: var(--td-gray-color-3);
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 2px rgba(32, 32, 32, .1);
+    }
+}

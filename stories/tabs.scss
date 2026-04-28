@@ -1,0 +1,18 @@
+.tdesign-demo-item__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-height: 204px;
+  padding: 40px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  overflow: auto;
+}
+
+.tdesign-demo-block-column-large {
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
+  column-gap: 32px;
+}

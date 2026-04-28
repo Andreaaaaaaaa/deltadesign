@@ -1,0 +1,165 @@
+// 全局样式使用
+
+$tooltip-arrow-width: 4px;
+$tooltip-bg: #202020;
+
+// .t-popup[role='tooltip'] .t-popup__arrow::before {
+//   width: 6px;
+//   height: 6px;
+
+//   @apply aw-shadow-none;
+// }
+
+.t-popup {
+    .t-tooltip {
+        &.t-popup__content {
+            max-width: 400px;
+            padding: 8px;
+            @apply aw-rounded aw-bg-white-100 aw-text-sm aw-shadow-none aw-p-2 aw-m-[10px] aw-border aw-border-solid aw-border-gray-20 aw-text-black-100 aw-shadow;
+            margin: 0;
+
+            &:not(.t-tooltip--light) {
+              @apply aw-text-black-100;
+            }
+
+            .contentContainer {
+              max-height: 300px;
+              overflow-y: auto;
+            }
+        }
+
+
+
+        // .t-popup__arrow {
+        //     bottom: 0;
+        // }
+
+        .t-popup__arrow::before {
+            content: '';
+            // width: 8;
+            // height: 8;
+            // border-style: solid;
+            // position: absolute;
+            // display: inline-block;
+            // transform: none;
+            // background: none;
+            // border-radius: 0 0 0 0;
+            // box-shadow: none;
+        }
+    }
+
+
+    $t-popup-content-arrow-offset: 10px;
+    &[data-popper-placement^='top'] .t-tooltip {
+        // margin-bottom: $tooltip-arrow-width;
+        // .t-popup__arrow {
+        //     bottom: 0;
+        // }
+
+        // .t-popup__arrow::before {
+        //     border-width: $tooltip-arrow-width $tooltip-arrow-width 0 $tooltip-arrow-width;
+        //     border-color: $tooltip-bg transparent transparent transparent;
+        //     bottom: -$tooltip-arrow-width;
+        //     // margin-top: 0;
+        //     // margin-bottom: 0;
+        // }
+
+      &.t-popup__content--arrow {
+        margin-bottom: $t-popup-content-arrow-offset;
+      }
+    }
+
+    &[data-popper-placement^='bottom'] .t-tooltip {
+      &.t-popup__content--arrow {
+        margin-top: $t-popup-content-arrow-offset;
+      }
+    }
+
+    &[data-popper-placement^='left'] .t-tooltip {
+      &.t-popup__content--arrow {
+        margin-right: $t-popup-content-arrow-offset;
+      }
+    }
+
+    &[data-popper-placement^='right'] .t-tooltip {
+      &.t-popup__content--arrow {
+        margin-left: $t-popup-content-arrow-offset;
+      }
+    }
+
+    $tooltip-arrow-horizontal-offset: 12px;
+    &[data-popper-placement^='top-start'] .t-tooltip .t-popup__arrow,
+    &[data-popper-placement^='bottom-start'] .t-tooltip .t-popup__arrow
+    {
+      left: $tooltip-arrow-horizontal-offset;
+    }
+
+    &[data-popper-placement^='top-end'] .t-tooltip .t-popup__arrow,
+    &[data-popper-placement^='bottom-end'] .t-tooltip .t-popup__arrow
+    {
+      left: calc(100% - $tooltip-arrow-horizontal-offset * 2);
+    }
+
+    &[data-popper-placement^='bottom'] .t-tooltip {
+        // margin-top: $tooltip-arrow-width;
+        // .t-popup__arrow {
+        //     top: 0;
+        // }
+
+        // .t-popup__arrow::before {
+        //     border-width: 0 $tooltip-arrow-width $tooltip-arrow-width $tooltip-arrow-width;
+        //     border-color: transparent transparent $tooltip-bg transparent;
+        //     top: -$tooltip-arrow-width;
+        //     // margin-top: 0;
+        //     // margin-bottom: 0;
+        // }
+    }
+
+    &[data-popper-placement^='right'] .t-tooltip {
+        // margin-left: $tooltip-arrow-width;
+        // .t-popup__arrow {
+        //     left: 0;
+        // }
+
+        // .t-popup__arrow::before {
+        //     border-width: $tooltip-arrow-width $tooltip-arrow-width $tooltip-arrow-width 0;
+        //     border-color: transparent $tooltip-bg transparent transparent;
+        //     left: -$tooltip-arrow-width;
+        //     // margin-left: 0;
+        //     // margin-right: 0;
+        // }
+    }
+
+    &[data-popper-placement^='left'] .t-tooltip {
+        // margin-right: $tooltip-arrow-width;
+        // .t-popup__arrow {
+        //     right: 0;
+        // }
+
+        // .t-popup__arrow::before {
+        //     border-width: $tooltip-arrow-width 0 $tooltip-arrow-width $tooltip-arrow-width;
+        //     border-color: transparent transparent transparent $tooltip-bg;
+        //     right: -$tooltip-arrow-width;
+        //     // margin-left: 0;
+        //     // margin-right: 0;
+        // }
+    }
+}
+// .t-tooltip .t-popup__arrow {
+//   width: 10px;
+//   height: 1px;
+// }
+
+// .t-popup__arrow::before {
+//   width: 10px;
+//   height: 10px;
+// }
+
+// .t-popup[data-popper-placement^='top'] .t-tooltip .t-popup__arrow {
+//   bottom: 4px;
+// }
+
+// .t-popup[data-popper-placement='top'] .t-popup__arrow {
+//   left: 50%;
+//   margin-left: -5px;
+// }

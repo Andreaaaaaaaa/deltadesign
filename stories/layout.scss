@@ -1,0 +1,38 @@
+[class*="tdesign-demo-item--layout"] .aw-mt-5 {
+    margin-top: 20px;
+}
+
+[class*="tdesign-demo-item--layout"] .t-layout__header {
+    text-align: center;
+    color: #fff;
+    background-color: var(--td-brand-color-4);
+    font-size: 16px;
+}
+
+[class*="tdesign-demo-item--layout"] .t-layout,
+[class*="tdesign-demo-item--layout"] .t-layout__direction-vertical {
+    background: var(--td-bg-color-page);
+}
+
+[class*="tdesign-demo-item--layout"] .t-layout__content {
+    text-align: center;
+    color: #fff;
+    background: var(--td-brand-color-5);
+    height: 100px;
+    font-size: 16px;
+    padding: 0;
+}
+
+[class*="tdesign-demo-item--layout"] .t-layout__footer {
+    min-height: 46px;
+    text-align: center;
+    color: #fff;
+    background: var(--td-brand-color-4);
+    font-size: 16px;
+}
+
+[class*="tdesign-demo-item--layout"] .t-layout__sider {
+    background-color: var(--td-brand-color-6);
+    color: #fff;
+    font-size: 16px;
+}

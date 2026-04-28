@@ -1,0 +1,458 @@
+:focus-visible {
+    outline: none;
+}
+:root,
+:root[theme-mode="light"] {
+  --td-brand-color-1: #ecf2fe;
+  --td-brand-color-2: #d4e3fc;
+  --td-brand-color-3: #bbd3fb;
+  --td-brand-color-4: #96bbf8;
+  --td-brand-color-5: #699ef5;
+  --td-brand-color-6: #4787f0;
+  --td-brand-color-7: #266fe8;
+  --td-brand-color-8: #0052d9;
+  --td-brand-color-9: #0034b5;
+  --td-brand-color-10: #001f97;
+  --td-warning-color-1: #fef3e6;
+  --td-warning-color-2: #f9e0c7;
+  --td-warning-color-3: #f7c797;
+  --td-warning-color-4: #f2995f;
+  --td-warning-color-5: #ed7b2f;
+  --td-warning-color-6: #d35a21;
+  --td-warning-color-7: #ba431b;
+  --td-warning-color-8: #9e3610;
+  --td-warning-color-9: #842b0b;
+  --td-warning-color-10: #5a1907;
+  --td-error-color-1: #fdecee;
+  --td-error-color-2: #f9d7d9;
+  --td-error-color-3: #f8b9be;
+  --td-error-color-4: #f78d94;
+  --td-error-color-5: #f36d78;
+  --td-error-color-6: #e34d59;
+  --td-error-color-7: #c9353f;
+  --td-error-color-8: #b11f26;
+  --td-error-color-9: #951114;
+  --td-error-color-10: #680506;
+  --td-success-color-1: #e8f8f2;
+  --td-success-color-2: #bcebdc;
+  --td-success-color-3: #85dbbe;
+  --td-success-color-4: #48c79c;
+  --td-success-color-5: #00a870;
+  --td-success-color-6: #078d5c;
+  --td-success-color-7: #067945;
+  --td-success-color-8: #056334;
+  --td-success-color-9: #044f2a;
+  --td-success-color-10: #033017;
+  --td-gray-color-1: #f3f3f3;
+  --td-gray-color-2: #eee;
+  --td-gray-color-3: #e7e7e7;
+  --td-gray-color-4: #dcdcdc;
+  --td-gray-color-5: #c5c5c5;
+  --td-gray-color-6: #a6a6a6;
+  --td-gray-color-7: #8b8b8b;
+  --td-gray-color-8: #777;
+  --td-gray-color-9: #5e5e5e;
+  --td-gray-color-10: #4b4b4b;
+  --td-gray-color-11: #383838;
+  --td-gray-color-12: #2c2c2c;
+  --td-gray-color-13: #242424;
+  --td-gray-color-14: #181818;
+  --td-font-white-1: #ffffff;
+  --td-font-white-2: rgba(255, 255, 255, 0.55);
+  --td-font-white-3: rgba(255, 255, 255, 0.35);
+  --td-font-white-4: rgba(255, 255, 255, 0.22);
+  --td-font-gray-1: rgba(0, 0, 0, 0.9);
+  --td-font-gray-2: rgba(0, 0, 0, 0.6);
+  --td-font-gray-3: rgba(0, 0, 0, 0.4);
+  --td-font-gray-4: rgba(0, 0, 0, 0.26);
+  --td-brand-color: var(--td-brand-color-8);
+  --td-warning-color: var(--td-warning-color-5);
+  --td-error-color: var(--td-error-color-6);
+  --td-success-color: var(--td-success-color-5);
+  --td-brand-color-hover: var(--td-brand-color-7);
+  --td-brand-color-focus: var(--td-brand-color-2);
+  --td-brand-color-active: var(--td-brand-color-9);
+  --td-brand-color-disabled: var(--td-brand-color-3);
+  --td-brand-color-light: var(--td-brand-color-1);
+  --td-warning-color-hover: var(--td-warning-color-4);
+  --td-warning-color-focus: var(--td-warning-color-2);
+  --td-warning-color-active: var(--td-warning-color-6);
+  --td-warning-color-disabled: var(--td-warning-color-3);
+  --td-warning-color-light: var(--td-warning-color-1);
+  --td-error-color-hover: var(--td-error-color-5);
+  --td-error-color-focus: var(--td-error-color-2);
+  --td-error-color-active: var(--td-error-color-7);
+  --td-error-color-disabled: var(--td-error-color-3);
+  --td-error-color-light: var(--td-error-color-1);
+  --td-success-color-hover: var(--td-success-color-4);
+  --td-success-color-focus: var(--td-success-color-2);
+  --td-success-color-active: var(--td-success-color-6);
+  --td-success-color-disabled: var(--td-success-color-3);
+  --td-success-color-light: var(--td-success-color-1);
+  --td-mask-active: rgba(0, 0, 0, 0.6);
+  --td-mask-disabled: rgba(255, 255, 255, 0.6);
+  --td-bg-color-page: var(--td-gray-color-2);
+  --td-bg-color-container: #fff;
+  --td-bg-color-container-hover: var(--td-gray-color-1);
+  --td-bg-color-container-active: var(--td-gray-color-3);
+  --td-bg-color-container-select: #fff;
+  --td-bg-color-secondarycontainer: var(--td-gray-color-1);
+  --td-bg-color-secondarycontainer-hover: var(--td-gray-color-2);
+  --td-bg-color-secondarycontainer-active: var(--td-gray-color-4);
+  --td-bg-color-component: var(--td-gray-color-3);
+  --td-bg-color-component-hover: var(--td-gray-color-4);
+  --td-bg-color-component-active: var(--td-gray-color-6);
+  --td-bg-color-component-disabled: var(--td-gray-color-2);
+  --td-bg-color-specialcomponent: #fff;
+  --td-text-color-primary: var(--td-font-gray-1);
+  --td-text-color-secondary: var(--td-font-gray-2);
+  --td-text-color-placeholder: var(--td-font-gray-3);
+  --td-text-color-disabled: var(--td-font-gray-4);
+  --td-text-color-anti: #fff;
+  --td-text-color-brand: var(--td-brand-color-8);
+  --td-text-color-link: var(--td-brand-color-8);
+  --td-border-level-1-color: var(--td-gray-color-3);
+  --td-component-stroke: var(--td-gray-color-3);
+  --td-border-level-2-color: var(--td-gray-color-4);
+  --td-component-border: var(--td-gray-color-4);
+  --td-shadow-1: 0 1px 10px rgba(0, 0, 0, 0.05), 0 4px 5px rgba(0, 0, 0, 8%), 0 2px 4px -1px rgba(0, 0, 0, 12%);
+  --td-shadow-2: 0 3px 14px 2px rgba(0, 0, 0, 0.05), 0 8px 10px 1px rgba(0, 0, 0, 6%), 0 5px 5px -3px rgba(0, 0, 0, 10%);
+  --td-shadow-3: 0 6px 30px 5px rgba(0, 0, 0, 0.05), 0 16px 24px 2px rgba(0, 0, 0, 4%), 0 8px 10px -5px rgba(0, 0, 0, 8%);
+  --td-shadow-inset-top: inset 0 0.5px 0 #dcdcdc;
+  --td-shadow-inset-right: inset 0.5px 0 0 #dcdcdc;
+  --td-shadow-inset-bottom: inset 0 -0.5px 0 #dcdcdc;
+  --td-shadow-inset-left: inset -0.5px 0 0 #dcdcdc;
+  --td-table-shadow-color: rgba(0, 0, 0, 0.08);
+  --td-scrollbar-color: rgba(0, 0, 0, 0.1);
+  --td-scroll-track-color: #fff;
+}
+:root[theme-mode="dark"] {
+  --td-brand-color-1: #1b2f51;
+  --td-brand-color-2: #173463;
+  --td-brand-color-3: #143975;
+  --td-brand-color-4: #103d88;
+  --td-brand-color-5: #0d429a;
+  --td-brand-color-6: #054bbe;
+  --td-brand-color-7: #2667d4;
+  --td-brand-color-8: #4582e6;
+  --td-brand-color-9: #699ef5;
+  --td-brand-color-10: #96bbf8;
+  --td-warning-color-1: #4f2a1d;
+  --td-warning-color-2: #582f21;
+  --td-warning-color-3: #733c23;
+  --td-warning-color-4: #a75d2b;
+  --td-warning-color-5: #cf6e2d;
+  --td-warning-color-6: #dc7633;
+  --td-warning-color-7: #e8935c;
+  --td-warning-color-8: #ecbf91;
+  --td-warning-color-9: #eed7bf;
+  --td-warning-color-10: #f3e9dc;
+  --td-error-color-1: #472324;
+  --td-error-color-2: #5e2a2d;
+  --td-error-color-3: #703439;
+  --td-error-color-4: #83383e;
+  --td-error-color-5: #a03f46;
+  --td-error-color-6: #c64751;
+  --td-error-color-7: #de6670;
+  --td-error-color-8: #ec888e;
+  --td-error-color-9: #edb1b6;
+  --td-error-color-10: #eeced0;
+  --td-success-color-1: #193a2a;
+  --td-success-color-2: #1a4230;
+  --td-success-color-3: #17533d;
+  --td-success-color-4: #0d7a55;
+  --td-success-color-5: #059465;
+  --td-success-color-6: #43af8a;
+  --td-success-color-7: #46bf96;
+  --td-success-color-8: #80d2b6;
+  --td-success-color-9: #b4e1d3;
+  --td-success-color-10: #deede8;
+  --td-gray-color-1: #f3f3f3;
+  --td-gray-color-2: #eee;
+  --td-gray-color-3: #e7e7e7;
+  --td-gray-color-4: #dcdcdc;
+  --td-gray-color-5: #c5c5c5;
+  --td-gray-color-6: #a6a6a6;
+  --td-gray-color-7: #8b8b8b;
+  --td-gray-color-8: #777;
+  --td-gray-color-9: #5e5e5e;
+  --td-gray-color-10: #4b4b4b;
+  --td-gray-color-11: #383838;
+  --td-gray-color-12: #2c2c2c;
+  --td-gray-color-13: #242424;
+  --td-gray-color-14: #181818;
+  --td-font-white-1: rgba(255, 255, 255, 0.9);
+  --td-font-white-2: rgba(255, 255, 255, 0.55);
+  --td-font-white-3: rgba(255, 255, 255, 0.35);
+  --td-font-white-4: rgba(255, 255, 255, 0.22);
+  --td-font-gray-1: rgba(0, 0, 0, 0.9);
+  --td-font-gray-2: rgba(0, 0, 0, 0.6);
+  --td-font-gray-3: rgba(0, 0, 0, 0.4);
+  --td-font-gray-4: rgba(0, 0, 0, 0.26);
+  --td-brand-color: var(--td-brand-color-8);
+  --td-warning-color: var(--td-warning-color-5);
+  --td-error-color: var(--td-error-color-6);
+  --td-success-color: var(--td-success-color-5);
+  --td-brand-color-hover: var(--td-brand-color-7);
+  --td-brand-color-focus: var(--td-brand-color-2);
+  --td-brand-color-active: var(--td-brand-color-9);
+  --td-brand-color-disabled: var(--td-brand-color-3);
+  --td-brand-color-light: var(--td-brand-color-1);
+  --td-warning-color-hover: var(--td-warning-color-4);
+  --td-warning-color-focus: var(--td-warning-color-2);
+  --td-warning-color-active: var(--td-warning-color-6);
+  --td-warning-color-disabled: var(--td-warning-color-3);
+  --td-warning-color-light: var(--td-warning-color-1);
+  --td-error-color-hover: var(--td-error-color-5);
+  --td-error-color-focus: var(--td-error-color-2);
+  --td-error-color-active: var(--td-error-color-7);
+  --td-error-color-disabled: var(--td-error-color-3);
+  --td-error-color-light: var(--td-error-color-1);
+  --td-success-color-hover: var(--td-success-color-4);
+  --td-success-color-focus: var(--td-success-color-2);
+  --td-success-color-active: var(--td-success-color-6);
+  --td-success-color-disabled: var(--td-success-color-3);
+  --td-success-color-light: var(--td-success-color-1);
+  --td-mask-active: rgba(0, 0, 0, 0.4);
+  --td-mask-disabled: rgba(0, 0, 0, 0.6);
+  --td-bg-color-page: var(--td-gray-color-14);
+  --td-bg-color-container: var(--td-gray-color-13);
+  --td-bg-color-container-hover: var(--td-gray-color-12);
+  --td-bg-color-container-active: var(--td-gray-color-10);
+  --td-bg-color-container-select: var(--td-gray-color-9);
+  --td-bg-color-secondarycontainer: var(--td-gray-color-12);
+  --td-bg-color-secondarycontainer-hover: var(--td-gray-color-11);
+  --td-bg-color-secondarycontainer-active: var(--td-gray-color-9);
+  --td-bg-color-component: var(--td-gray-color-11);
+  --td-bg-color-component-hover: var(--td-gray-color-10);
+  --td-bg-color-component-active: var(--td-gray-color-9);
+  --td-bg-color-component-disabled: var(--td-gray-color-12);
+  --td-bg-color-specialcomponent: transparent;
+  --td-text-color-primary: var(--td-font-white-1);
+  --td-text-color-secondary: var(--td-font-white-2);
+  --td-text-color-placeholder: var(--td-font-white-3);
+  --td-text-color-disabled: var(--td-font-white-4);
+  --td-text-color-anti: #fff;
+  --td-text-color-brand: var(--td-brand-color-8);
+  --td-text-color-link: var(--td-brand-color-8);
+  --td-border-level-1-color: var(--td-gray-color-11);
+  --td-component-stroke: var(--td-gray-color-11);
+  --td-border-level-2-color: var(--td-gray-color-9);
+  --td-component-border: var(--td-gray-color-9);
+  --td-shadow-1: 0 4px 6px rgba(0, 0, 0, 0.06), 0 1px 10px rgba(0, 0, 0, 8%), 0 2px 4px rgba(0, 0, 0, 12%);
+  --td-shadow-2: 0 8px 10px rgba(0, 0, 0, 0.12), 0 3px 14px rgba(0, 0, 0, 10%), 0 5px 5px rgba(0, 0, 0, 16%);
+  --td-shadow-3: 0 16px 24px rgba(0, 0, 0, 0.14), 0 6px 30px rgba(0, 0, 0, 12%), 0 8px 10px rgba(0, 0, 0, 20%);
+  --td-shadow-inset-top: inset 0 0.5px 0 #5e5e5e;
+  --td-shadow-inset-right: inset 0.5px 0 0 #5e5e5e;
+  --td-shadow-inset-bottom: inset 0 -0.5px 0 #5e5e5e;
+  --td-shadow-inset-left: inset -0.5px 0 0 #5e5e5e;
+  --td-table-shadow-color: rgba(0, 0, 0, 0.55);
+  --td-scrollbar-color: rgba(255, 255, 255, 0.1);
+  --td-scroll-track-color: #333;
+}
+
+:root,
+:root[theme-mode="light"] {
+    // 基础颜色
+    --td-brand-color-1: theme("colors.brand.10");
+    --td-brand-color-2: theme("colors.brand.20");
+    --td-brand-color-3: theme("colors.brand.30");
+    --td-brand-color-4: theme("colors.brand.40");
+    --td-brand-color-5: theme("colors.brand.50");
+    --td-brand-color-6: theme("colors.brand.60");
+    --td-brand-color-7: theme("colors.brand.70");
+    --td-brand-color-8: theme("colors.brand.80");
+    --td-brand-color-9: theme("colors.brand.90");
+    --td-brand-color-10: theme("colors.brand.100");
+    --td-warning-color-1: theme("colors.warning.10");
+    --td-warning-color-2: theme("colors.warning.20");
+    --td-warning-color-3: theme("colors.warning.30");
+    --td-warning-color-4: theme("colors.warning.40");
+    --td-warning-color-5: theme("colors.warning.50");
+    --td-warning-color-6: theme("colors.warning.60");
+    --td-warning-color-7: theme("colors.warning.70");
+    --td-warning-color-8: theme("colors.warning.80");
+    --td-warning-color-9: theme("colors.warning.90");
+    --td-warning-color-10: theme("colors.warning.100");
+    --td-error-color-1: theme("colors.error.10");
+    --td-error-color-2: theme("colors.error.20");
+    --td-error-color-3: theme("colors.error.30");
+    --td-error-color-4: theme("colors.error.40");
+    --td-error-color-5: theme("colors.error.50");
+    --td-error-color-6: theme("colors.error.60");
+    --td-error-color-7: theme("colors.error.70");
+    --td-error-color-8: theme("colors.error.80");
+    --td-error-color-9: theme("colors.error.90");
+    --td-error-color-10: theme("colors.error.100");
+    --td-success-color-1: theme("colors.success.10");
+    --td-success-color-2: theme("colors.success.20");
+    --td-success-color-3: theme("colors.success.30");
+    --td-success-color-4: theme("colors.success.40");
+    --td-success-color-5: theme("colors.success.50");
+    --td-success-color-6: theme("colors.success.60");
+    --td-success-color-7: theme("colors.success.70");
+    --td-success-color-8: theme("colors.success.80");
+    --td-success-color-9: theme("colors.success.90");
+    --td-success-color-10: theme("colors.success.100");
+    --td-gray-color-1: theme("colors.gray.10");
+    --td-gray-color-2: theme("colors.gray.20");
+    --td-gray-color-3: theme("colors.gray.30");
+    --td-gray-color-4: theme("colors.gray.40");
+    --td-gray-color-5: theme("colors.gray.50");
+    --td-gray-color-6: theme("colors.gray.60");
+    --td-gray-color-7: theme("colors.gray.70");
+    --td-gray-color-8: theme("colors.gray.80");
+    --td-gray-color-9: theme("colors.gray.90");
+    --td-gray-color-10: theme("colors.gray.100");
+    --td-gray-color-11: #383838;
+    --td-gray-color-12: #2c2c2c;
+    --td-gray-color-13: #242424;
+    --td-gray-color-14: #181818;
+    --td-info-color-1: theme("colors.info.10");
+    --td-info-color-6: theme("colors.info.60");
+
+    // 基础颜色
+    --td-brand-color: theme("colors.primary"); // 色彩-品牌-可操作
+    --td-warning-color: var(--td-warning-color-6); // 色彩-功能-警告
+    --td-error-color: var(--td-error-color-6); // 色彩-功能-失败
+    --td-success-color: var(--td-success-color-6); // 色彩-功能-成功
+
+    // 基础颜色的扩展 用于 hover / 聚焦 / 禁用 / 点击 等状态
+    --td-brand-color-hover: theme("colors.black.80"); // hover态
+    --td-brand-color-focus: theme("colors.black.100"); // focus态，包括鼠标和键盘
+    --td-brand-color-active: theme("colors.black.100"); // 点击态
+    --td-brand-color-disabled: theme("colors.black.30"); // 禁用态
+    --td-brand-color-light: theme("colors.gray.20"); // 浅色的选中态
+
+    //  // 警告色扩展
+    //  --td-warning-color-hover: var(--td-warning-color-4);
+    //  --td-warning-color-focus: var(--td-warning-color-2);
+    //  --td-warning-color-active: var(--td-warning-color-6);
+    //  --td-warning-color-disabled: var(--td-warning-color-3);
+    //  --td-warning-color-light: var(--td-warning-color-1);
+
+    //  // 失败/错误色扩展
+    //  --td-error-color-hover: var(--td-error-color-5);
+    //  --td-error-color-focus: var(--td-error-color-2);
+    //  --td-error-color-active: var(--td-error-color-7);
+    //  --td-error-color-disabled: var(--td-error-color-3);
+    //  --td-error-color-light: var(--td-error-color-1);
+
+    //  // 成功色扩展
+    //  --td-success-color-hover: var(--td-success-color-4);
+    //  --td-success-color-focus: var(--td-success-color-2);
+    //  --td-success-color-active: var(--td-success-color-6);
+    //  --td-success-color-disabled: var(--td-success-color-3);
+    //  --td-success-color-light: var(--td-success-color-1);
+
+    // 遮罩
+    --td-mask-active: theme("colors.black.70"); // 遮罩-弹出
+    --td-mask-disabled: theme("colors.white.50"); // 遮罩-禁用
+
+    // 文本颜色
+    --td-text-color-primary: theme("colors.black.100"); // 色彩-文字-主要
+    --td-text-color-secondary: theme("colors.black.60"); // 色彩-文字-次要
+    --td-text-color-placeholder: theme("colors.black.30"); // 色彩-文字-占位符/说明
+    --td-text-color-disabled: theme("colors.black.30"); // 色彩-文字-禁用
+
+    // 分割线
+    --td-border-level-1-color: theme("colors.gray.40");
+    --td-component-stroke: theme("colors.gray.40");
+    // 边框
+    --td-border-level-2-color: theme("colors.gray.40");
+    --td-component-border: theme("colors.gray.40");
+
+    // 基础/下层 投影 hover 使用的组件包括：表格 /
+    --td-shadow-1: theme("boxShadow.DEFAULT");
+    // 中层投影 下拉 使用的组件包括：下拉菜单 / 气泡确认框 / 选择器 /
+    --td-shadow-2: theme("boxShadow.md");
+    // 上层投影（警示/弹窗）使用的组件包括：全局提示 / 消息通知
+    --td-shadow-3: theme("boxShadow.md");
+    --td-bg-color-page: theme("colors.gray.10");
+
+    // 滚动条颜色
+    --td-scrollbar-color: theme("colors.black.30");
+
+    // 基础页面背景色
+    //--td-bg-color-page: theme('colors.gray.10');
+
+    // 基础表格hover背景色
+    // --td-bg-color-container-hover: theme('colors.gray.30');
+    --td-bg-color-secondarycontainer-hover: theme("colors.gray.30");
+    --td-bg-color-container-hover: theme("colors.gray.30");
+
+    //tag颜色
+    --td-bg-color-component: theme("colors.gray.20"); //基础标签
+    --td-tag-disabled-bg-color: theme("colors.gray.10"); //基础标签--背景--禁用状态
+    --td-tag-disabled-text-color: theme("colors.black.30"); //基础标签--文字--禁用状态
+    --td-tag-disabled-border-color: theme("colors.gray.10"); //基础标签--边框--禁用状态
+    --td-tag-checked-bg-color: theme("colors.gray.40"); //基础标签----选中状态
+    --td-tag-hover-bg-color: theme("colors.gray.30"); //基础标签----hover状态
+    --td-tag-active-bg-color: theme("colors.gray.40"); //基础标签----点击状态
+    --td-tag-bg-color: theme("colors.white.100"); //状态标签统一背景色
+    --td-tag-info-color: theme("colors.info.60"); //默认标签
+    --td-tag-success-color: theme("colors.success.60"); //成功标签
+    --td-tag-warning-color: theme("colors.warning.60"); //警告标签
+    --td-tag-error-color: theme("colors.error.60"); //错误标签
+    --td-tag-default-color: theme("colors.black.60"); // 失效标签
+    --td-tag-close-color: theme("colors.black.60"); //关闭按钮
+    --td-tag-disabled-close-color: theme("colors.black.30"); //关闭按钮--禁用状态
+    --td-tag-dashed-color: theme("colors.gray.50"); //添加按钮--虚线边框
+    --td-tag-dashed-disabled-color: theme("colors.gray.20"); //添加按钮--虚线边框--禁用状态
+}
+
+:root[theme-mode="dark"],
+div[theme-mode="dark"] {
+    // 基础颜色
+    --td-brand-color: theme("colors.white.100"); // 色彩-品牌-可操作
+    // --td-warning-color: var(--td-warning-color-6); // 色彩-功能-警告
+    // --td-error-color: var(--td-error-color-6); // 色彩-功能-失败
+    // --td-success-color: var(--td-success-color-6); // 色彩-功能-成功
+
+    // 基础颜色的扩展 用于 hover / 聚焦 / 禁用 / 点击 等状态
+    --td-brand-color-hover: theme('colors.white.60'); // hover态
+    --td-brand-color-focus: theme('colors.white.100'); // focus态，包括鼠标和键盘
+    --td-brand-color-active: theme('colors.white.100'); // 点击态
+    --td-brand-color-disabled: theme('colors.white.30'); // 禁用态
+
+    // 遮罩
+    --td-mask-active: theme("colors.white.70"); // 遮罩-弹出
+    --td-mask-disabled: theme("colors.white.30"); // 遮罩-禁用
+
+    // 文本颜色
+    --td-text-color-primary: theme("colors.white.100"); // 色彩-文字-主要
+    --td-text-color-secondary: theme("colors.white.60"); // 色彩-文字-次要
+    --td-text-color-placeholder: theme("colors.white.60"); // 色彩-文字-占位符/说明
+    --td-text-color-disabled: theme("colors.white.30"); // 色彩-文字-禁用
+
+    // 分割线
+    --td-border-level-1-color: theme("colors.white.60");
+    --td-component-stroke: theme("colors.white.60");
+    // 边框
+    --td-border-level-2-color: theme("colors.white.60");
+    --td-component-border: theme("colors.white.60");
+    --td-bg-color-specialcomponent: transparent;
+
+    // 滚动条颜色
+    --td-scrollbar-color: theme("colors.white.30");
+}
+
+@mixin hook-narrow-scrollbar {
+  &::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+    background: transparent;
+    margin-right: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+    background-color: rgba(219, 222, 235, 1);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(209, 213, 230, 1);
+  }
+}

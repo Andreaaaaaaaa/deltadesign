@@ -1,0 +1,26 @@
+.tdesign-demo-item__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-height: 204px;
+  padding: 40px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  overflow: auto;
+}
+
+.t-form__item {
+  margin-bottom: 0px;
+}
+.aw-status-input-container{
+  .t-input-number {
+    width: 300px;
+  }
+}
+
+.tdesign-demo-item--input-number .t-input-number {
+  margin-bottom: 16px;
+}
+
+

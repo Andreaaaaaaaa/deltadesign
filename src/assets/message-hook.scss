@@ -1,0 +1,39 @@
+// 全局样式使用
+.t-message {
+  min-width: 280px;
+  max-width: 480px;
+  min-height: 48px;
+
+  @apply aw-shadow-md aw-rounded aw-flex aw-items-start;
+
+  .t-icon.t-icon-info-circle-filled,
+  .t-icon.t-icon-help-circle-filled {
+    color: #2e8cfa;
+  }
+
+  .aw-overflow-hidden {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+
+    &.aw-clamp-2 {
+      -webkit-line-clamp: 2;
+    }
+
+    &.aw-clamp-3 {
+      -webkit-line-clamp: 3;
+    }
+  }
+}
+
+.t-message .aw-text-primary {
+  color: var(--td-gray-color-10);
+
+  @apply aw-underline;
+}
+
+.t-message.t-is-closable > .t-message__close {
+  @apply aw-ml-4;
+}
+.t-message.t-is-closable {
+  min-width: auto;
+}

@@ -1,0 +1,33 @@
+// 全局样式使用
+
+.t-alert {
+    @apply aw-py-4 aw-px-5;
+
+    .t-popup__reference {
+        @apply aw-text-gray-100;
+    }
+}
+
+.t-alert--info {
+    background-color: var(--td-info-color-1);
+
+    .t-alert__icon {
+        color: var(--td-info-color-6);
+    }
+}
+
+.t-alert--warning {
+    background-color: var(--td-warning-color-1);
+}
+
+.t-alert--error {
+    background-color: var(--td-error-color-1);
+}
+
+.t-alert--success {
+    background-color: var(--td-success-color-1);
+}
+
+.t-alert__description {
+    @apply aw-text-black-90;
+}

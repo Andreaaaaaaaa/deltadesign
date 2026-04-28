@@ -1,0 +1,15 @@
+.t-breadcrumb__item {
+    @apply aw-text-black-60;
+}
+
+.t-breadcrumb__separator {
+    @apply aw-mx-2;
+}
+
+.t-breadcrumb--text-overflow .t-breadcrumb__inner .t-icon {
+    vertical-align: middle;
+}
+
+.t-breadcrumb__inner .t-icon {
+    margin-top: -2px;
+}

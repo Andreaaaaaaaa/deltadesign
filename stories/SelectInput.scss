@@ -1,0 +1,256 @@
+.tdesign-demo__select-input-ul-auto-width {
+  padding: 4px 0;
+}
+.tdesign-demo__select-input-ul-auto-width > li {
+  display: block;
+  border-radius: 3px;
+  height: 40px;
+  line-height: 22px;
+  cursor: pointer;
+  padding: 9px 8px;
+  color: var(--td-text-color-primary);
+  transition: background-color 0.2s cubic-bezier(0.38, 0, 0.24, 1);
+  white-space: nowrap;
+  word-wrap: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tdesign-demo__select-input-ul-auto-width > li:hover {
+  background-color: var(--td-bg-color-container-hover);
+}
+
+.tdesign-demo__select-input-ul-borderless {
+  padding: 4px 0;
+}
+.tdesign-demo__select-input-ul-borderless > li {
+  display: block;
+  border-radius: 3px;
+  height: 40px;
+  line-height: 22px;
+  cursor: pointer;
+  padding: 9px 8px;
+  color: var(--td-text-color-primary);
+  transition: background-color 0.2s cubic-bezier(0.38, 0, 0.24, 1);
+  white-space: nowrap;
+  word-wrap: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tdesign-demo__select-input-ul-borderless > li:hover {
+  background-color: var(--td-bg-color-container-hover);
+}
+
+.tdesign-demo__select-input-ul-single {
+  padding: 4px 0;
+}
+.tdesign-demo__select-input-ul-single > li {
+  display: block;
+  border-radius: 3px;
+  height: 40px;
+  line-height: 22px;
+  cursor: pointer;
+  padding: 9px 8px;
+  color: var(--td-text-color-primary);
+  transition: background-color 0.2s cubic-bezier(0.38, 0, 0.24, 1);
+  white-space: nowrap;
+  word-wrap: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tdesign-demo__select-input-ul-single > li:hover {
+  background-color: var(--td-bg-color-container-hover);
+}
+
+.tdesign-demo__select-input-ul-autocomplete {
+  padding: 4px 0;
+}
+.tdesign-demo__select-input-ul-autocomplete > li {
+  display: block;
+  border-radius: 3px;
+  height: 40px;
+  line-height: 22px;
+  cursor: pointer;
+  padding: 9px 8px;
+  color: var(--td-text-color-primary);
+  transition: background-color 0.2s cubic-bezier(0.38, 0, 0.24, 1);
+  white-space: nowrap;
+  word-wrap: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tdesign-demo__select-input-ul-autocomplete > li:hover {
+  background-color: var(--td-bg-color-container-hover);
+}
+
+.tdesign-demo__panel-options-borderless-multiple {
+  width: 100%;
+  padding: 4px 0;
+  display: inline-block;
+}
+.tdesign-demo__panel-options-borderless-multiple .t-checkbox {
+  display: flex;
+  border-radius: 3px;
+  height: 40px;
+  line-height: 22px;
+  cursor: pointer;
+  padding: 9px 8px;
+  color: var(--td-text-color-primary);
+  transition: background-color 0.2s cubic-bezier(0.38, 0, 0.24, 1);
+  white-space: nowrap;
+  word-wrap: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+.tdesign-demo__panel-options-borderless-multiple .t-checkbox:hover {
+  background-color: var(--td-bg-color-container-hover);
+}
+
+.tdesign-demo__panel-options-borderless-multiple {
+  width: 100%;
+  padding: 4px 0;
+  display: inline-block;
+}
+.tdesign-demo__panel-options-borderless-multiple .t-checkbox {
+  display: flex;
+  border-radius: 3px;
+  height: 40px;
+  line-height: 22px;
+  cursor: pointer;
+  padding: 9px 8px;
+  color: var(--td-text-color-primary);
+  transition: background-color 0.2s cubic-bezier(0.38, 0, 0.24, 1);
+  white-space: nowrap;
+  word-wrap: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+.tdesign-demo__panel-options-borderless-multiple .t-checkbox:hover {
+  background-color: var(--td-bg-color-container-hover);
+}
+
+
+.tdesign-demo__panel-options-collapsed-items {
+  width: 100%;
+  padding: 4px 0;
+  display: inline-block;
+}
+.tdesign-demo__panel-options-collapsed-items .t-checkbox {
+  display: flex;
+  border-radius: 3px;
+  height: 40px;
+  line-height: 22px;
+  cursor: pointer;
+  padding: 9px 8px;
+  color: var(--td-text-color-primary);
+  transition: background-color 0.2s cubic-bezier(0.38, 0, 0.24, 1);
+  white-space: nowrap;
+  word-wrap: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+.tdesign-demo__panel-options-collapsed-items .t-checkbox:hover {
+  background-color: var(--td-bg-color-container-hover);
+}
+.tdesign-demo__select-input-ul-single {
+  padding: 4px 0;
+}
+.tdesign-demo__select-input-ul-single > li {
+  display: block;
+  border-radius: 3px;
+  height: 40px;
+  line-height: 22px;
+  cursor: pointer;
+  padding: 9px 8px;
+  color: var(--td-text-color-primary);
+  transition: background-color 0.2s cubic-bezier(0.38, 0, 0.24, 1);
+  white-space: nowrap;
+  word-wrap: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tdesign-demo__select-input-ul-single > li:hover {
+  background-color: var(--td-bg-color-container-hover);
+}
+
+.tdesign-demo-select-input-custom-tag .tdesign-demo-select-input__img {
+  font-size: 16px;
+  margin-right: 4px;
+}
+
+.tdesign-demo__select-empty-custom {
+  text-align: center;
+  color: var(--td-text-color-disabled);
+  line-height: 32px;
+}
+.displaySpan {
+  display: flex;
+  align-items: center;
+}
+
+.tdesign-demo__panel-options-excess-tags-display-type {
+  width: 100%;
+  padding: 4px 0;
+  display: inline-block;
+}
+.tdesign-demo__panel-options-excess-tags-display-type .t-checkbox {
+  display: flex;
+  border-radius: 3px;
+  height: 40px;
+  line-height: 22px;
+  cursor: pointer;
+  padding: 9px 8px;
+  color: var(--td-text-color-primary);
+  transition: background-color 0.2s cubic-bezier(0.38, 0, 0.24, 1);
+  white-space: nowrap;
+  word-wrap: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 4px;
+  margin-right: 0;
+}
+
+.tdesign-demo__panel-options-excess-tags-display-type .t-checkbox:hover {
+  background-color: var(--td-bg-color-container-hover);
+}
+
+.tdesign-demo__select-empty-status {
+  text-align: center;
+  color: var(--td-text-color-disabled);
+  line-height: 32px;
+}
+
+.tdesign-demo-select-input-status .t-select-input__wrap {
+  width: 300px;
+  vertical-align: -26px;
+}
+
+.tdesign-demo__select-empty-width {
+  text-align: center;
+  color: var(--td-text-color-disabled);
+  line-height: 32px;
+}
+.tdesign-demo__select-input-width .t-input__wrap {
+  width: 380px;
+  vertical-align: middle;
+  display: inline-flex;
+}
+
+.tdesign-demo__select-input-width .t-demo-normal {
+  width: 380px;
+  vertical-align: middle;
+  display: inline-flex;
+}

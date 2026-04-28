@@ -1,0 +1,77 @@
+// 全局样式使用
+
+.t-radio__label,
+.t-checkbox {
+    color: var(--td-brand-color);
+}
+
+.t-radio-group .t-radio,
+.t-checkbox__label {
+    @apply aw-mr-4;
+}
+
+.t-radio-button {
+    @apply aw-inline-flex;
+    @apply aw-items-center;
+
+}
+
+.r-radio {
+  &__input {
+    width: 14px;
+    height: 14px;
+    @apply aw-border aw-border-gray-40;
+  }
+}
+.t-radio:hover .t-radio__input {
+  @apply aw-border-gray-70;
+}
+
+
+.t-radio-group {
+  .t-radio__input {
+    width: 14px;
+    height: 14px;
+  }
+
+  &.t-size-s {
+    .t-radio__label {
+      @apply aw-text-sm;
+    }
+  }
+  .t-radio-button__label {
+    @apply aw-text-black-60;
+    &:hover{
+      @apply aw-text-black;
+    }
+  }
+  &.t-radio-group__outline {
+    .t-radio-button.t-is-checked {
+      @apply aw-bg-gray-20 aw-text-black aw-border-gray-40;
+      transition: none;
+      .t-radio-button__label {
+        @apply aw-text-black;
+      }
+    }
+  }
+}
+
+.t-radio-group .t-radio-button {
+    background: var(--td-bg-color-specialcomponent);
+
+    @apply aw-text-black-60;
+}
+
+.t-radio-group .t-radio-button:first-child {
+    border-radius: 4px 0 0 4px;
+}
+
+.t-radio-group .t-radio-button:last-child {
+    border-radius: 0 4px 4px 0;
+}
+
+.t-radio-group.t-size-m .t-radio-button {
+    padding: 5px 10px;
+}
+
+

@@ -1,0 +1,212 @@
+// 全局样式使用
+.t-select {
+    border-radius: 4px;
+    padding-left: 8px;
+}
+
+.t-select .t-select__single {
+    margin-left: 0;
+}
+
+.t-select.t-is-active:not(.t-is-disabled):not(.t-no-border) {
+    box-shadow: 0 0 0 2px rgba(32, 32, 32, .1);
+}
+
+.t-select-option.t-select-option__hover .t-checkbox__label {
+  @apply aw-text-primary;
+}
+
+.t-select-option {
+    box-sizing: border-box;
+}
+.t-select-option.t-is-selected{
+    @apply aw-bg-gray-20;
+}
+
+.t-select-option:not(.t-is-selected):hover{
+    @apply aw-bg-gray-10;
+}
+
+.t-cascader.t-is-active {
+    box-shadow: none;
+}
+
+.t-select__empty {
+    padding: 8px;
+}
+
+.t-cascader__menu,
+.t-popup__content.cascader-0-0 {
+    padding: 0;
+}
+
+.t-cascader__item {
+    @apply aw-mt-0;
+
+    border-radius: 0;
+}
+
+.t-icon.t-cascader__item-icon {
+    height: 100%;
+}
+
+.t-cascader__item-icon.t-is-expanded.t-icon-chevron-right {
+    color: rgba(32, 32, 32, .6);
+
+    .t-input.t-select__input.t-input--focused {
+        @apply aw-text-primary;
+    }
+}
+
+.t-select__dropdown-inner {
+    .t-tabs__bar.t-is-top {
+        background-image: none;
+
+        @apply aw-bg-transparent;
+    }
+
+    .t-tabs__nav-item {
+        @apply aw-ml-0 aw-mr-4;
+
+        .t-tabs__nav-item-wrapper {
+            @apply aw-py-2;
+            @apply aw-px-0;
+            @apply aw-mx-0;
+            @apply aw-text-base;
+            @apply aw-h-9;
+
+            &.t-is-active {
+                @apply aw-border-b-2;
+                @apply aw-rounded-none;
+                @apply aw-border-black;
+            }
+        }
+    }
+}
+
+.t-select.t-size-s .t-tag.t-size-s {
+    height: 22px;
+}
+
+.checkbox-small .t-checkbox__label {
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.t-popup__content.t-select__dropdown {
+    padding: 0;
+
+    .t-select__dropdown-inner {
+        padding: 4px 0;
+    }
+
+    .t-select__dropdown-inner>ul {
+        height: 100%;
+        padding-inline-start: 0;
+        margin-block-start: 0;
+        margin-block-end: 0;
+
+        // li:first-child {
+        //   margin-top: 4px;
+        // }
+        // li:last-child {
+        //   height: 40px;
+        //   padding-bottom: 8px;
+        // }
+    }
+
+    .t-select-option.t-size-m {
+        height: 36px;
+        line-height: 20px;
+        margin-top: 0;
+        padding: 8px;
+        border-radius: 0;
+    }
+
+    .t-select-option.t-size-s {
+        height: 34px;
+        font-size: 12px;
+        line-height: 18px;
+        margin-top: 0;
+        padding: 8px;
+        border-radius: 0;
+
+        .t-checkbox__label {
+            font-size: 12px;
+        }
+    }
+}
+
+.aw-multi-popup.t-popup__content.t-select__dropdown {
+  max-height: 315px !important;
+  overflow-y: hidden;
+
+  .t-select__dropdown-inner>ul {
+    max-height: 220px;
+    overflow-y: auto;
+  }
+}
+
+// .t-popup__content.t-select__dropdown::after {
+//   content: '';
+//   content: "";
+//   position: absolute;
+//   height: 10px;
+//   width: 100%;
+//   left: 0;
+//   bottom: 0;
+//   background: linear-gradient(180deg,rgba(255,255,255,.0001) -20.69%,#ffffff 77.43%);
+// }
+
+.t-select__empty.t-size-s {
+    @apply aw-text-sm;
+}
+
+.explore-tabs .t-tabs__nav-item-text-wrapper {
+    @apply aw-text-sm;
+}
+
+div.t-select__wrap {
+    width: auto;
+}
+
+.t-popup[data-popper-placement^=bottom] .t-popup__content {
+  margin-top: 4px;
+}
+
+.t-select.t-size-s {
+  line-height: 26px;
+}
+.t-select-option.t-size-m span{
+  // background-image: linear-gradient(#000, #fff);
+  // background-clip: text;
+  // -webkit-background-clip: text;
+  // -webkit-text-fill-color: transparent;
+}
+
+.t-select__dropdown-inner .t-tabs .t-tabs__nav-item.t-is-active::after {
+  display: none;
+  .t-tabs__nav-container.t-is-top::after {
+    height: 0;
+  }
+}
+
+.t-select:hover{
+    box-shadow: 0 0 0 2px rgba(32, 32, 32, .1);
+}
+
+.show-exist .t-checkbox__label{
+    margin-right: 0px;
+}
+
+.highlight{
+    color: #FD9800;
+}
+
+.t-select__dropdown-inner .select-search-medium .t-input__wrap:hover{
+    box-shadow: 0 0 0 2px rgba(32, 32, 32, .1);
+    border-radius: 4px;
+}
+
+
+

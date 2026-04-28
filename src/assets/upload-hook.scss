@@ -1,0 +1,18 @@
+.t-upload {
+  .t-upload__trigger {
+    @apply aw-text-sm;
+  }
+
+  .t-upload__dragger-btns {
+    // 2022.11.12 无需重新上传
+    .t-upload__dragger-progress-cancel {
+      display: none;
+    }
+    .t-button__text {
+      @apply aw-text-gray-100;
+    }
+  }
+  .t-upload--highlight {
+    @apply aw-text-gray-100;
+  }
+}

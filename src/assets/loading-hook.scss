@@ -1,0 +1,33 @@
+.t-loading__gradient {
+  .t-loading__gradient-conic[style] {
+    background: conic-gradient(from 90deg at 50% 50%, rgba(255, 255, 255, 0.0001) 0deg, #202020 360deg) !important;
+    opacity: 0.5;
+  }
+}
+
+.t-loading {
+  &.t-size-s {
+    font-size: 16px;
+  }
+
+  &.t-size-m {
+    font-size: 24px;
+  }
+
+  &.t-size-l {
+    font-size: 40px;
+  }
+
+  &.aw-flex-col .t-icon-loading {
+    margin-bottom: 8px;
+  }
+}
+
+.t-loading__overlay {
+  background: aw-bg-white-50;
+}
+.t-loading__text {
+  font-size: 14px;
+  line-height: 20px;
+  margin-left: 8px;
+}
