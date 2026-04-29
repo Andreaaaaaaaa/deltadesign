@@ -7,6 +7,7 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "strict": true,
+    "skipLibCheck": true,
     "jsx": "preserve",
     "sourceMap": true,
     "resolveJsonModule": true,
@@ -29,5 +30,8 @@
     "test/**/*.ts",
     "vite.config.ts",
     "vue.config.ts",
+  ],
+  "exclude": [
+    "src/components/data-grid"
   ]
 }

@@ -1,11 +1,19 @@
 import figma, { html } from '@figma/code-connect'
 
 figma.connect(
-  'https://www.figma.com/design/zPcMTh43LEKj0Qu6EUbNLs/DP%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83?node-id=74-2287',
+  'https://www.figma.com/design/zPcMTh43LEKj0Qu6EUbNLs/DP%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83?node-id=75-5239',
   {
-    props: {},
-    example: () =>
+    props: {
+      size: figma.enum('尺寸', {
+        '常规': 'medium',
+        '小尺寸': 'small',
+      }),
+      hasDivider: figma.boolean('分割线'),
+      hasScrollbar: figma.boolean('滑动条'),
+    },
+    example: ({ size }) =>
       html`<t-dropdown
+  :size="${size}"
   :options="[
     { content: '选项一', value: 1 },
     { content: '选项二', value: 2 },

@@ -27,6 +27,14 @@
   @apply aw-border-gray-70;
 }
 
+// 选中态与输入框聚焦一致：内层为品牌/主色实线边，外侧一层浅色晕（非双层纯黑线）
+.t-radio.t-is-checked:not(.t-is-disabled) .t-radio__input {
+  box-shadow: 0 0 0 2px rgba(32, 32, 32, 0.1);
+  transition:
+    border 0.2s cubic-bezier(0, 0, 0.15, 1),
+    box-shadow 0.2s cubic-bezier(0, 0, 0.15, 1);
+}
+
 
 .t-radio-group {
   .t-radio__input {

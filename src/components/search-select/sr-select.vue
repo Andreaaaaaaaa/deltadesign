@@ -16,7 +16,7 @@
   >
     <template #panelTopContent>
       <div :class="`select-search-${size}`">
-        <t-input v-model="searchText" :size="size" placeholder="搜索" class="aw-w-full aw-border-gray-40" clearable>
+        <t-input v-model="searchText" :size="size" placeholder="搜索" class="aw-w-full" clearable>
           <template #suffix-icon>
             <svg class="aw-h-4 aw-w-4" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path

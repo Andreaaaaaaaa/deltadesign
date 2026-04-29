@@ -1,4 +1,10 @@
 // 全局样式使用
+// 与 input-hook 一致：默认灰描边 → 悬停略加深；展开(激活) 时主色描边 + 外层浅晕（不在 hover 时假亮）
+.t-select.t-select-polyfill {
+    border: 1px solid #d1d5e6;
+    border-radius: 4px;
+}
+
 .t-select {
     border-radius: 4px;
     padding-left: 8px;
@@ -8,8 +14,14 @@
     margin-left: 0;
 }
 
+.t-select:hover:not(.t-is-disabled):not(.t-is-active) {
+    border-color: rgba(32, 32, 32, 0.35);
+    box-shadow: none;
+}
+
 .t-select.t-is-active:not(.t-is-disabled):not(.t-no-border) {
-    box-shadow: 0 0 0 2px rgba(32, 32, 32, .1);
+    border-color: #202020;
+    box-shadow: 0 0 0 2px rgba(32, 32, 32, 0.1);
 }
 
 .t-select-option.t-select-option__hover .t-checkbox__label {
@@ -19,11 +31,34 @@
 .t-select-option {
     box-sizing: border-box;
 }
-.t-select-option.t-is-selected{
-    @apply aw-bg-gray-20;
+
+// 选中行：与输入框/单选一致 — 浅底 + 1px 半透明深描边，文字主色（避免仅改背景仍继承品牌蓝字）
+.t-select-option.t-is-selected:not(.t-is-disabled) {
+    color: #202020;
+    background-color: #f6f8fa;
+    box-shadow: 0 0 0 1px rgba(32, 32, 32, 0.1);
+    transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear;
 }
 
-.t-select-option:not(.t-is-selected):hover{
+.t-select-option.t-is-selected:not(.t-is-disabled):hover {
+    background-color: #e8eaf1;
+    box-shadow: 0 0 0 1px rgba(32, 32, 32, 0.12);
+}
+
+.t-select-option.t-is-selected .t-checkbox__label {
+    color: #202020;
+}
+
+// 多选下拉：选项内复选框选中时加外圈浅晕（与单选 radio 一致），弱化「纯实色块」观感
+.t-select-option .t-checkbox.t-is-checked:not(.t-is-disabled) .t-checkbox__input {
+    box-shadow: 0 0 0 2px rgba(32, 32, 32, 0.1);
+    transition:
+        border 0.2s linear,
+        background-color 0.2s,
+        box-shadow 0.2s cubic-bezier(0, 0, 0.15, 1);
+}
+
+.t-select-option:not(.t-is-selected):hover {
     @apply aw-bg-gray-10;
 }
 
@@ -191,9 +226,6 @@ div.t-select__wrap {
   }
 }
 
-.t-select:hover{
-    box-shadow: 0 0 0 2px rgba(32, 32, 32, .1);
-}
 
 .show-exist .t-checkbox__label{
     margin-right: 0px;
@@ -203,8 +235,9 @@ div.t-select__wrap {
     color: #FD9800;
 }
 
-.t-select__dropdown-inner .select-search-medium .t-input__wrap:hover{
-    box-shadow: 0 0 0 2px rgba(32, 32, 32, .1);
+// 下拉内搜索框：与全局 t-input 一致，由 input-hook 负责聚焦环；这里只补圆角与描边，避免与 tailwind border 叠双层
+.t-select__dropdown-inner .select-search-medium .t-input,
+.t-select__dropdown-inner .select-search-small .t-input {
     border-radius: 4px;
 }
 

@@ -1,15 +1,13 @@
 // 全局样式使用
-
-.t-is-focused,
-.t-input--focused {
-    box-shadow: none;
-}
+// 注意：不要写全局的 .t-input--focused { box-shadow: none }，否则会压过 input-hook、并影响
+// t-select 内的筛选输入框、表单项里的 Select 等与「输入框同款」的聚焦环。
 
 .t-textarea__inner {
     @apply aw-font-sans;
 }
 
-.t-textarea__inner:focus {
+.t-textarea__inner:focus,
+.t-textarea.t-input--focused {
     box-shadow: none;
 }
 
@@ -17,8 +15,8 @@
     border-color: var(--td-error-color);
 }
 
-.t-is-error .t-is-focused {
-    // box-shadow: 0 0 0 2px var(--td-error-color-focus);
+.t-is-error .t-textarea.t-input--focused,
+.t-is-error .t-textarea__inner:focus {
     box-shadow: none;
 }
 
