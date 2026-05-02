@@ -1,0 +1,1908 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Delta QDE MVP Preview</title>
+    <style>
+      :root {
+        --bg: #f4f6fb;
+        --panel: #ffffff;
+        --panel-2: #f8fafc;
+        --text: #111827;
+        --muted: #667085;
+        --line: #dfe5ef;
+        --blue: #0f5cff;
+        --blue-900: #173b71;
+        --orange: #ff7448;
+        --green: #1f9d6b;
+        --cyan: #24b5d8;
+        --purple: #7257e8;
+        --shadow: 0 18px 50px rgba(31, 41, 55, 0.1);
+        --radius-lg: 24px;
+        --radius-md: 16px;
+        --radius-sm: 10px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 12% 8%, rgba(15, 92, 255, 0.12), transparent 32%),
+          radial-gradient(circle at 92% 12%, rgba(255, 116, 72, 0.12), transparent 26%),
+          var(--bg);
+        font-family:
+          Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+          "Microsoft YaHei", sans-serif;
+      }
+
+      .shell {
+        width: min(1440px, calc(100vw - 48px));
+        margin: 0 auto;
+        padding: 36px 0 56px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 28px;
+        align-items: end;
+        margin-bottom: 24px;
+      }
+
+      .eyebrow {
+        margin: 0 0 10px;
+        color: var(--blue);
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(34px, 5vw, 64px);
+        line-height: 0.95;
+        letter-spacing: -0.06em;
+      }
+
+      .hero p {
+        max-width: 760px;
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.75;
+      }
+
+      .hero-card {
+        padding: 22px;
+        border: 1px solid rgba(15, 92, 255, 0.14);
+        border-radius: var(--radius-lg);
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+      }
+
+      .hero-card strong {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 15px;
+      }
+
+      .hero-card code {
+        display: inline-flex;
+        margin: 4px 6px 4px 0;
+        padding: 6px 9px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--panel-2);
+        color: var(--blue-900);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 26px 0;
+      }
+
+      .tab {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 10px 16px;
+        background: rgba(255, 255, 255, 0.78);
+        color: var(--muted);
+        font: inherit;
+        font-weight: 750;
+        cursor: pointer;
+        transition:
+          transform 180ms ease,
+          color 180ms ease,
+          border 180ms ease,
+          background 180ms ease;
+      }
+
+      .tab:hover {
+        transform: translateY(-1px);
+      }
+
+      .tab.is-active {
+        border-color: var(--blue);
+        background: var(--blue);
+        color: #fff;
+      }
+
+      .workspace {
+        display: grid;
+        grid-template-columns: minmax(0, 1.35fr) minmax(360px, 0.65fr);
+        gap: 22px;
+        align-items: start;
+      }
+
+      .preview-stage,
+      .side-panel {
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.86);
+        box-shadow: var(--shadow);
+      }
+
+      .preview-stage {
+        overflow: hidden;
+      }
+
+      .stage-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 20px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(248, 250, 252, 0.82);
+      }
+
+      .stage-bar span {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .score-pill {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        padding: 7px 10px;
+        border-radius: 999px;
+        background: rgba(31, 157, 107, 0.1);
+        color: var(--green);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .canvas {
+        padding: 28px;
+        min-height: 760px;
+        background:
+          linear-gradient(rgba(17, 24, 39, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(17, 24, 39, 0.03) 1px, transparent 1px),
+          #f1f4f9;
+        background-size: 28px 28px;
+      }
+
+      .figma-frame {
+        width: 100%;
+        min-height: 680px;
+        padding: 32px;
+        border: 1px solid rgba(17, 24, 39, 0.08);
+        border-radius: 22px;
+        background: #f7f9fc;
+      }
+
+      .frame-header,
+      .filter-bar,
+      .toolbar,
+      .card,
+      .dialog,
+      .footer-actions {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        box-shadow: 0 8px 24px rgba(31, 41, 55, 0.06);
+      }
+
+      .frame-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 4px 0 12px;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .title-copy h2 {
+        margin: 0;
+        font-size: 30px;
+        line-height: 1.1;
+        letter-spacing: -0.04em;
+      }
+
+      .title-copy p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .actions,
+      .row {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 88px;
+        height: 34px;
+        border: 1px solid #cfd8e6;
+        border-radius: 999px;
+        background: #fff;
+        color: var(--blue-900);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .btn.primary {
+        border-color: var(--blue-900);
+        background: var(--blue-900);
+        color: #fff;
+      }
+
+      .filter-bar {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(130px, 1fr)) auto;
+        gap: 14px;
+        align-items: end;
+        margin-bottom: 20px;
+        padding: 16px;
+        border-radius: var(--radius-md);
+      }
+
+      .field label {
+        display: block;
+        margin-bottom: 7px;
+        color: #596273;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .control {
+        display: flex;
+        align-items: center;
+        height: 34px;
+        padding: 0 12px;
+        border: 1px solid #d6deeb;
+        border-radius: 8px;
+        background: #fff;
+        color: #98a2b3;
+        font-size: 12px;
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      .card {
+        border-radius: var(--radius-md);
+        padding: 18px;
+      }
+
+      .metric-label,
+      .card-subtitle {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 750;
+      }
+
+      .metric-value {
+        margin-top: 12px;
+        font-size: 30px;
+        font-weight: 900;
+        letter-spacing: -0.05em;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 12px;
+        padding: 5px 9px;
+        border-radius: 7px;
+        background: #eef2f7;
+        color: #344054;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .analytics {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .details-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .card-title {
+        margin: 0 0 8px;
+        font-size: 18px;
+        letter-spacing: -0.03em;
+      }
+
+      .chart {
+        position: relative;
+        height: 250px;
+        margin-top: 18px;
+        overflow: hidden;
+      }
+
+      .chart::before {
+        content: "";
+        position: absolute;
+        inset: 28px 0 30px;
+        background:
+          linear-gradient(to bottom, transparent 0 24%, #e7ecf3 24% 25%, transparent 25% 49%, #e7ecf3 49% 50%, transparent 50% 74%, #e7ecf3 74% 75%, transparent 75%),
+          transparent;
+      }
+
+      .bars {
+        position: absolute;
+        inset: 54px 24px 36px;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 18px;
+        align-items: end;
+      }
+
+      .bar-pair {
+        display: flex;
+        gap: 7px;
+        align-items: end;
+      }
+
+      .bar {
+        width: 18px;
+        border-radius: 4px 4px 0 0;
+        background: var(--orange);
+      }
+
+      .bar.alt {
+        background: #5a7ee6;
+      }
+
+      .trend-line {
+        position: absolute;
+        left: 30px;
+        right: 38px;
+        bottom: 92px;
+        height: 3px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--cyan), var(--blue));
+        transform: rotate(-7deg);
+      }
+
+      .donut {
+        width: 154px;
+        height: 154px;
+        margin: 44px auto 26px;
+        border-radius: 50%;
+        background: conic-gradient(var(--orange) 0 45%, #5a7ee6 45% 78%, #dfe6f1 78% 100%);
+      }
+
+      .donut::after {
+        content: "";
+        display: block;
+        width: 78px;
+        height: 78px;
+        margin: 38px;
+        border-radius: 50%;
+        background: #fff;
+      }
+
+      .ranking {
+        display: grid;
+        gap: 9px;
+        margin-top: 20px;
+      }
+
+      .rank-row {
+        display: grid;
+        grid-template-columns: 72px 1fr;
+        gap: 12px;
+        align-items: center;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .track {
+        height: 8px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: #edf1f7;
+      }
+
+      .fill {
+        height: 100%;
+        border-radius: inherit;
+        background: var(--blue);
+      }
+
+      table {
+        width: 100%;
+        margin-top: 18px;
+        border-collapse: collapse;
+        font-size: 12px;
+      }
+
+      th,
+      td {
+        padding: 11px 12px;
+        border-bottom: 1px solid #e7ecf3;
+        text-align: left;
+        white-space: nowrap;
+      }
+
+      th {
+        background: #f2f5fa;
+        color: #344054;
+        font-weight: 900;
+      }
+
+      .toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+        padding: 12px 16px;
+        border-radius: var(--radius-md);
+      }
+
+      .dialog-wrap {
+        display: grid;
+        min-height: 680px;
+        place-items: center;
+      }
+
+      .dialog {
+        width: min(640px, 100%);
+        padding: 24px;
+        border-radius: 26px;
+      }
+
+      .dialog .form-body {
+        display: grid;
+        gap: 16px;
+        margin: 22px 0;
+      }
+
+      .textarea {
+        height: 86px;
+        align-items: flex-start;
+        padding-top: 10px;
+      }
+
+      .footer-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        padding-top: 18px;
+        border: 0;
+        border-top: 1px solid var(--line);
+        box-shadow: none;
+      }
+
+      .side-panel {
+        position: sticky;
+        top: 24px;
+        overflow: hidden;
+      }
+
+      .panel-section {
+        padding: 18px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .panel-section:last-child {
+        border-bottom: 0;
+      }
+
+      .panel-title {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+
+      .panel-title h3 {
+        margin: 0;
+        font-size: 15px;
+      }
+
+      .status {
+        padding: 5px 9px;
+        border-radius: 999px;
+        background: rgba(31, 157, 107, 0.1);
+        color: var(--green);
+        font-size: 11px;
+        font-weight: 900;
+      }
+
+      pre {
+        max-height: 330px;
+        margin: 0;
+        overflow: auto;
+        padding: 14px;
+        border: 1px solid #243044;
+        border-radius: 14px;
+        background: #101828;
+        color: #d8e1f0;
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .checks {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .checks li {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .check-dot {
+        flex: 0 0 auto;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: rgba(31, 157, 107, 0.12);
+        color: var(--green);
+        text-align: center;
+        font-size: 12px;
+        font-weight: 900;
+        line-height: 18px;
+      }
+
+      .warning-dot {
+        background: rgba(255, 116, 72, 0.13);
+        color: var(--orange);
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      @media (max-width: 1100px) {
+        .hero,
+        .workspace {
+          grid-template-columns: 1fr;
+        }
+
+        .side-panel {
+          position: static;
+        }
+      }
+
+      @media (max-width: 780px) {
+        .shell {
+          width: min(100vw - 24px, 1440px);
+          padding-top: 18px;
+        }
+
+        .canvas {
+          padding: 12px;
+        }
+
+        .figma-frame {
+          padding: 18px;
+        }
+
+        .frame-header,
+        .filter-bar,
+        .analytics,
+        .details-grid,
+        .metrics {
+          grid-template-columns: 1fr;
+        }
+
+        .frame-header {
+          display: grid;
+          gap: 14px;
+        }
+      }
+
+      /* Delta spec correction: documentation-first typography, neutral palette. */
+      :root {
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --panel-2: #f6f7f8;
+        --text: #151515;
+        --muted: #666666;
+        --line: #e5e5e5;
+        --blue: #0062cc;
+        --blue-900: #1f5f99;
+        --orange: #ff7043;
+        --green: #16834a;
+        --cyan: #2f8ed8;
+        --shadow: none;
+        --radius-lg: 2px;
+        --radius-md: 2px;
+        --radius-sm: 2px;
+      }
+
+      body {
+        background: var(--bg);
+        font-family:
+          "PingFang SC", "Roboto", "Helvetica Neue", Arial, "Microsoft YaHei",
+          sans-serif;
+        font-size: 12px;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 8px;
+        background: #e60012;
+      }
+
+      .shell {
+        width: min(1180px, calc(100vw - 64px));
+        padding: 28px 0 48px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 360px;
+        gap: 40px;
+        align-items: start;
+        margin-bottom: 28px;
+        padding-bottom: 22px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .eyebrow {
+        margin-bottom: 8px;
+        color: #4d4d4d;
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: 0;
+        text-transform: none;
+      }
+
+      h1 {
+        max-width: 720px;
+        font-size: 28px;
+        line-height: 1.25;
+        font-weight: 500;
+        letter-spacing: 0;
+      }
+
+      .hero p {
+        max-width: 760px;
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.8;
+      }
+
+      .hero-card,
+      .preview-stage,
+      .side-panel,
+      .frame-header,
+      .filter-bar,
+      .toolbar,
+      .card,
+      .dialog,
+      .footer-actions {
+        box-shadow: none;
+      }
+
+      .hero-card {
+        padding: 16px;
+        border-color: var(--line);
+        border-radius: 2px;
+        background: #fafafa;
+        backdrop-filter: none;
+      }
+
+      .hero-card strong {
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      .hero-card code {
+        margin: 4px 4px 0 0;
+        padding: 3px 6px;
+        border-radius: 2px;
+        color: #333333;
+        font-size: 11px;
+        font-weight: 400;
+      }
+
+      .hero-card a {
+        display: inline-flex;
+        margin-top: 10px;
+        color: #202020;
+        font-size: 12px;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .tabs {
+        gap: 0;
+        margin: 0 0 20px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .tab {
+        border: 0;
+        border-bottom: 2px solid transparent;
+        border-radius: 0;
+        padding: 10px 18px 9px;
+        background: transparent;
+        color: #555555;
+        font-size: 12px;
+        font-weight: 400;
+      }
+
+      .tab:hover {
+        transform: none;
+        color: var(--text);
+      }
+
+      .tab.is-active {
+        border-color: #e60012;
+        background: transparent;
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      .workspace {
+        grid-template-columns: minmax(0, 1.45fr) 390px;
+        gap: 20px;
+      }
+
+      .preview-stage,
+      .side-panel {
+        border-radius: 2px;
+        background: #ffffff;
+      }
+
+      .stage-bar {
+        padding: 10px 14px;
+        background: #f7f7f7;
+      }
+
+      .stage-bar span,
+      .score-pill,
+      .status {
+        font-size: 11px;
+        font-weight: 400;
+      }
+
+      .score-pill,
+      .status {
+        border-radius: 2px;
+        background: #eef7f2;
+      }
+
+      .canvas {
+        min-height: 720px;
+        padding: 22px;
+        background: #f3f4f5;
+        background-image: none;
+      }
+
+      .figma-frame {
+        min-height: 640px;
+        padding: 24px;
+        border-color: var(--line);
+        border-radius: 2px;
+        background: #f7f8fa;
+      }
+
+      .frame-header {
+        margin-bottom: 16px;
+        padding-bottom: 10px;
+      }
+
+      .title-copy h2 {
+        font-size: 24px;
+        line-height: 1.3;
+        font-weight: 500;
+        letter-spacing: 0;
+      }
+
+      .title-copy p {
+        margin-top: 6px;
+        font-size: 12px;
+        color: #777777;
+      }
+
+      .filter-bar,
+      .toolbar,
+      .card,
+      .dialog {
+        border-radius: 2px;
+        border-color: var(--line);
+      }
+
+      .filter-bar {
+        gap: 12px;
+        margin-bottom: 16px;
+        padding: 14px;
+      }
+
+      .field label,
+      .metric-label,
+      .card-subtitle {
+        color: #555555;
+        font-size: 12px;
+        font-weight: 400;
+      }
+
+      .control {
+        height: 32px;
+        border-color: #dcdcdc;
+        border-radius: 2px;
+        color: #9a9a9a;
+        font-size: 12px;
+      }
+
+      .btn {
+        min-width: 82px;
+        height: 32px;
+        border-color: #d4d4d4;
+        border-radius: 2px;
+        color: #333333;
+        font-size: 12px;
+        font-weight: 400;
+      }
+
+      .btn.primary {
+        border-color: #202020;
+        background: #202020;
+      }
+
+      .metrics,
+      .analytics,
+      .details-grid {
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      .card {
+        padding: 16px;
+      }
+
+      .metric-value {
+        margin-top: 8px;
+        font-size: 26px;
+        line-height: 1.2;
+        font-weight: 500;
+        letter-spacing: 0;
+      }
+
+      .tag {
+        margin-top: 10px;
+        padding: 3px 7px;
+        border-radius: 2px;
+        background: #f0f1f2;
+        color: #555555;
+        font-size: 11px;
+        font-weight: 400;
+      }
+
+      .card-title {
+        margin-bottom: 6px;
+        font-size: 16px;
+        line-height: 1.4;
+        font-weight: 500;
+        letter-spacing: 0;
+      }
+
+      .chart {
+        height: 220px;
+        margin-top: 14px;
+      }
+
+      .bar {
+        width: 14px;
+        border-radius: 2px 2px 0 0;
+      }
+
+      .trend-line {
+        height: 2px;
+        background: var(--cyan);
+      }
+
+      .donut {
+        width: 132px;
+        height: 132px;
+        margin-top: 36px;
+      }
+
+      .donut::after {
+        width: 66px;
+        height: 66px;
+        margin: 33px;
+      }
+
+      th,
+      td {
+        padding: 9px 10px;
+        border-color: #e8e8e8;
+      }
+
+      th {
+        background: #eceff1;
+        color: #333333;
+        font-weight: 500;
+      }
+
+      .panel-section {
+        padding: 14px;
+      }
+
+      .panel-title h3 {
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      pre {
+        max-height: 300px;
+        border-color: #d9d9d9;
+        border-radius: 2px;
+        background: #f7f8fa;
+        color: #222222;
+        font-size: 11px;
+        line-height: 1.65;
+      }
+
+      .checks li {
+        color: #555555;
+        font-size: 12px;
+      }
+
+      .check-dot,
+      .warning-dot {
+        border-radius: 2px;
+        background: #f0f1f2;
+        color: #333333;
+      }
+
+      /* Compression fix: the spec reference is a vertical document, not a split console. */
+      .workspace {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .side-panel {
+        position: static;
+        display: grid;
+        grid-template-columns: 0.8fr 1.1fr 1.1fr;
+        align-items: stretch;
+      }
+
+      .panel-section {
+        border-right: 1px solid var(--line);
+        border-bottom: 0;
+      }
+
+      .panel-section:last-child {
+        border-right: 0;
+      }
+
+      .canvas {
+        padding: 20px;
+      }
+
+      .figma-frame {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      .filter-bar {
+        grid-template-columns: repeat(4, minmax(160px, 1fr)) auto;
+      }
+
+      .actions {
+        white-space: nowrap;
+      }
+
+      pre {
+        max-height: 240px;
+      }
+
+      .figma-frame.app-shell-preview {
+        max-width: 100%;
+        min-height: 660px;
+        padding: 0;
+        overflow: auto;
+        background: #f3f4f5;
+      }
+
+      .qde-app-shell {
+        width: 1600px;
+        min-height: 980px;
+        background: #f6f8fa;
+        color: #202020;
+        transform: scale(0.66);
+        transform-origin: top left;
+      }
+
+      .qde-top-nav {
+        display: flex;
+        height: 56px;
+        background: #202020;
+        color: #ffffff;
+      }
+
+      .qde-logo-area {
+        display: flex;
+        width: 260px;
+        align-items: center;
+        padding-left: 50px;
+      }
+
+      .qde-logo-mark {
+        width: 160px;
+        height: 32px;
+        border-radius: 2px;
+        background: linear-gradient(90deg, #ffffff 0%, #d7d7d7 100%);
+        opacity: 0.94;
+      }
+
+      .qde-top-menu {
+        display: flex;
+        height: 56px;
+        align-items: stretch;
+        gap: 28px;
+      }
+
+      .qde-top-menu span {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 14px;
+        line-height: 20px;
+      }
+
+      .qde-top-menu .is-active {
+        color: #ffffff;
+        font-weight: 500;
+      }
+
+      .qde-top-menu .is-active::after {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 4px;
+        background: #d52b2d;
+        content: "";
+      }
+
+      .qde-top-divider {
+        width: 1px;
+        height: 18px;
+        margin: 19px 0 0 4px;
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .qde-top-actions {
+        display: flex;
+        margin-left: auto;
+        align-items: center;
+        gap: 18px;
+        padding-right: 28px;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 14px;
+      }
+
+      .qde-game-switch {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .qde-game-logo {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: #ffffff;
+      }
+
+      .qde-action-icons {
+        display: flex;
+        gap: 16px;
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .qde-body {
+        display: flex;
+        min-height: 924px;
+      }
+
+      .qde-side-nav {
+        width: 260px;
+        background: #ffffff;
+        border-right: 1px solid #e8eaf1;
+      }
+
+      .qde-side-search {
+        display: flex;
+        height: 32px;
+        margin: 16px 20px 16px;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .qde-search-box {
+        display: flex;
+        width: 196px;
+        height: 32px;
+        align-items: center;
+        padding: 0 10px;
+        border: 1px solid #d1d5e6;
+        border-radius: 4px;
+        color: rgba(32, 32, 32, 0.48);
+        font-size: 14px;
+      }
+
+      .qde-catalog-icon {
+        width: 16px;
+        height: 16px;
+        border: 1px solid #202020;
+        border-radius: 2px;
+        opacity: 0.72;
+      }
+
+      .qde-nav-list {
+        display: grid;
+        gap: 8px;
+      }
+
+      .qde-nav-item {
+        display: flex;
+        height: 32px;
+        align-items: center;
+        color: #202020;
+        font-size: 14px;
+      }
+
+      .qde-nav-item.level-1 {
+        padding-left: 40px;
+        font-weight: 500;
+      }
+
+      .qde-nav-item.level-2 {
+        padding-left: 64px;
+      }
+
+      .qde-nav-item.level-3 {
+        padding-left: 80px;
+      }
+
+      .qde-nav-item.is-active {
+        width: 240px;
+        border-right: 1px solid #d52b2d;
+        border-left: 1px solid #d52b2d;
+        border-radius: 0 4px 4px 0;
+        background: #f6f8fa;
+        color: #d52b2d;
+        font-weight: 500;
+      }
+
+      .qde-main {
+        width: 1340px;
+        padding: 16px;
+      }
+
+      .qde-page-header {
+        display: flex;
+        height: 68px;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .qde-page-title h2 {
+        margin: 0;
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: 500;
+      }
+
+      .qde-page-title p {
+        margin-top: 4px;
+        color: #777777;
+        font-size: 13px;
+        line-height: 20px;
+      }
+
+      .qde-header-actions,
+      .qde-filter-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .qde-shell-btn,
+      .qde-filter-chip {
+        display: inline-flex;
+        height: 32px;
+        align-items: center;
+        border: 1px solid #dcdcdc;
+        border-radius: 4px;
+        background: #ffffff;
+        color: #333333;
+        font-size: 13px;
+        line-height: 20px;
+      }
+
+      .qde-shell-btn {
+        padding: 0 14px;
+      }
+
+      .qde-filter-chip {
+        min-width: 176px;
+        padding: 0 12px;
+      }
+
+      .qde-filter-chip.is-wide {
+        min-width: 244px;
+      }
+
+      .qde-global-filter {
+        display: flex;
+        height: 56px;
+        margin-bottom: 16px;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        border: 1px solid #e8eaf1;
+        border-radius: 4px;
+        background: #ffffff;
+      }
+
+      .qde-metric-grid,
+      .qde-chart-grid,
+      .qde-detail-grid {
+        display: grid;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      .qde-metric-grid {
+        grid-template-columns: repeat(4, 315px);
+      }
+
+      .qde-chart-grid {
+        grid-template-columns: repeat(2, 646px);
+      }
+
+      .qde-detail-grid {
+        grid-template-columns: 878px 414px;
+      }
+
+      .qde-card {
+        border: 1px solid #e8eaf1;
+        border-radius: 4px;
+        background: #ffffff;
+        padding: 20px;
+      }
+
+      .qde-metric-card {
+        height: 128px;
+      }
+
+      .qde-metric-label,
+      .qde-card-subtitle {
+        color: #5c6068;
+        font-size: 13px;
+        line-height: 20px;
+      }
+
+      .qde-metric-number {
+        margin-top: 8px;
+        font-size: 28px;
+        line-height: 36px;
+        font-weight: 500;
+      }
+
+      .qde-trend {
+        display: inline-flex;
+        margin-top: 8px;
+        color: #159a55;
+        font-size: 12px;
+      }
+
+      .qde-card-title {
+        margin: 0 0 4px;
+        font-size: 15px;
+        line-height: 22px;
+        font-weight: 500;
+      }
+
+      .qde-chart-card {
+        height: 336px;
+      }
+
+      .qde-chart-body {
+        position: relative;
+        height: 248px;
+        margin-top: 14px;
+        border: 1px solid #e8eaf1;
+        border-radius: 3px;
+        overflow: hidden;
+      }
+
+      .qde-chart-body::before {
+        position: absolute;
+        inset: 24px 16px;
+        background: repeating-linear-gradient(
+          to bottom,
+          transparent 0,
+          transparent 43px,
+          #eef0f4 44px
+        );
+        content: "";
+      }
+
+      .qde-line {
+        position: absolute;
+        right: 32px;
+        bottom: 64px;
+        left: 32px;
+        height: 76px;
+        border-top: 3px solid #d52b2d;
+        border-radius: 50%;
+        transform: skewY(-8deg);
+      }
+
+      .qde-bars {
+        display: flex;
+        height: 248px;
+        align-items: end;
+        gap: 18px;
+        padding: 28px 32px;
+      }
+
+      .qde-bars span {
+        width: 24px;
+        border-radius: 3px 3px 0 0;
+        background: #1d5ef0;
+      }
+
+      .qde-table-preview {
+        display: grid;
+        margin-top: 12px;
+        border: 1px solid #e8eaf1;
+      }
+
+      .qde-table-row {
+        display: grid;
+        grid-template-columns: 1.8fr 1fr 1fr 0.8fr;
+        min-height: 40px;
+        align-items: center;
+        border-bottom: 1px solid #e8eaf1;
+        padding: 0 12px;
+        color: #333333;
+        font-size: 13px;
+      }
+
+      .qde-table-row:last-child {
+        border-bottom: 0;
+      }
+
+      .qde-table-row.is-head {
+        min-height: 36px;
+        background: #f6f8fa;
+        color: #5c6068;
+        font-weight: 500;
+      }
+
+      .qde-insight-list {
+        display: grid;
+        gap: 12px;
+        margin-top: 16px;
+        color: #5c6068;
+        font-size: 13px;
+        line-height: 20px;
+      }
+
+      @media (max-width: 980px) {
+        .hero,
+        .side-panel {
+          grid-template-columns: 1fr;
+        }
+
+        .panel-section {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .filter-bar,
+        .metrics,
+        .analytics,
+        .details-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Delta QDE MVP / Action Runner Preview</p>
+          <h1>把“AI 画稿”变成可验收的设计生产协议</h1>
+          <p>
+            这个 HTML 不是最终产品界面，而是 QDE MVP 的可视化原型：左侧模拟
+            Figma 生成结果，右侧展示模板、Actions、Runner 报告和当前缺口。
+          </p>
+        </div>
+        <aside class="hero-card">
+          <strong>第一版只验证三类高频后台模板</strong>
+          <code>dashboard.analytics.v1</code>
+          <code>table.management.v1</code>
+          <code>dialog.form.v1</code>
+          <a href="./qde-component-dashboard.html" target="_blank">打开组件化 Dashboard 预览</a>
+        </aside>
+      </section>
+
+      <nav class="tabs" aria-label="模板切换">
+        <button class="tab is-active" data-template="dashboard">Dashboard 看板</button>
+        <button class="tab" data-template="table">Table Page 列表页</button>
+        <button class="tab" data-template="dialog">Form Dialog 表单弹窗</button>
+      </nav>
+
+      <section class="workspace">
+        <div class="preview-stage">
+          <div class="stage-bar">
+            <span id="stageName">Page / Dashboard</span>
+            <strong class="score-pill" id="scorePill">82 · pass-with-warnings</strong>
+          </div>
+          <div class="canvas">
+            <section class="figma-frame" id="previewRoot"></section>
+          </div>
+        </div>
+
+        <aside class="side-panel">
+          <section class="panel-section">
+            <div class="panel-title">
+              <h3>Runner Report</h3>
+              <span class="status" id="reportStatus">pass-with-warnings</span>
+            </div>
+            <ul class="checks" id="checks"></ul>
+          </section>
+
+          <section class="panel-section">
+            <div class="panel-title">
+              <h3>DELTA_FIGMA_ACTIONS</h3>
+            </div>
+            <pre id="actionsJson"></pre>
+          </section>
+
+          <section class="panel-section">
+            <div class="panel-title">
+              <h3>Node Tree</h3>
+            </div>
+            <pre id="nodeTree"></pre>
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <script>
+      const templates = {
+        dashboard: {
+          stage: "Page / Dashboard / App Shell",
+          score: "86 · pass-with-warnings",
+          status: "pass-with-warnings",
+          previewClass: "app-shell-preview",
+          checks: [
+            ["pass", "App Shell 匹配：TopNavigation / Body / SideNavigation / Main"],
+            ["pass", "顶导使用注册组件 TopNavigation，默认变体为 经营分析 / 展开"],
+            ["pass", "侧导使用注册组件 SideNavigation，默认变体为 经营分析 / 展开"],
+            ["pass", "主内容遵循 1308 内容宽、16 间距、4/2/自定义栅格"],
+            ["warn", "图表仍是 Chart Placeholder，后续需要 Figma 侧 delta-chart 组件"],
+            ["warn", "HTML 预览是规则映射，不等价于 Figma 真实组件实例"],
+          ],
+          actions: {
+            version: "delta-qde-mvp/v1",
+            intent: "生成带顶部导航和侧边导航的经营分析数据看板",
+            template: "dashboard.analytics.v1",
+            viewport: {
+              width: 1600,
+              appShell: true,
+              contentWidth: 1308,
+              contentPadding: 16,
+            },
+            actions: [
+              {
+                type: "CREATE_APP_SHELL",
+                id: "app_shell",
+                name: "Page / App Shell",
+                width: 1600,
+                topNavigation: {
+                  component: "TopNavigation",
+                  variant: { "命中页签": "经营分析", "状态": "展开" },
+                },
+                sideNavigation: {
+                  component: "SideNavigation",
+                  variant: { "状态": "展开", "所属顶导": "经营分析" },
+                },
+                mainArea: { id: "main_area", width: 1340, contentWidth: 1308, padding: 16 },
+              },
+              { type: "CREATE_SECTION", id: "filters", parent: "main_area", name: "Section / Global Filters" },
+              { type: "ADD_CHART_PLACEHOLDER", id: "main_trend", chartType: "dual-axis" },
+              { type: "VALIDATE", checks: ["real-component-instance", "app-shell-exists", "semantic-node-tree", "no-overlap"] },
+            ],
+          },
+          tree: [
+            "FRAME / Dashboard / QDE MVP / With App Shell / layout=VERTICAL",
+            "  INSTANCE / TopNavigation / 经营分析 / 展开",
+            "  FRAME / Body / App Content / layout=HORIZONTAL",
+            "    FRAME / Side Nav Clip / 260",
+            "      INSTANCE / SideNavigation / 经营分析 / 展开",
+            "    FRAME / Main / Content Area / layout=VERTICAL",
+            "      FRAME / Header / Page Header / layout=VERTICAL",
+            "      FRAME / Section / Global Filters / layout=HORIZONTAL",
+            "      FRAME / Grid / Metrics / 4 Columns / layout=HORIZONTAL",
+            "      FRAME / Grid / Analytics / 2 Columns / layout=HORIZONTAL",
+            "      FRAME / Grid / Detail Modules / layout=HORIZONTAL",
+          ],
+          render() {
+            return `
+              <div class="qde-app-shell">
+                <header class="qde-top-nav">
+                  <div class="qde-logo-area"><div class="qde-logo-mark" aria-hidden="true"></div></div>
+                  <nav class="qde-top-menu" aria-label="顶部导航">
+                    <span class="is-active">经营分析</span>
+                    <span>用户获取</span>
+                    <span>行业洞察</span>
+                    <i class="qde-top-divider"></i>
+                    <span>探索分析</span>
+                    <span>人群中心</span>
+                    <span>我的</span>
+                  </nav>
+                  <div class="qde-top-actions">
+                    <div class="qde-game-switch"><i class="qde-game-logo"></i><span>Tencent Games</span><span>⌄</span></div>
+                    <div class="qde-action-icons"><span>搜索</span><span>通知</span><span>帮助</span><span>用户</span></div>
+                  </div>
+                </header>
+
+                <div class="qde-body">
+                  <aside class="qde-side-nav" aria-label="侧边导航">
+                    <div class="qde-side-search">
+                      <div class="qde-search-box">搜索</div>
+                      <div class="qde-catalog-icon" aria-hidden="true"></div>
+                    </div>
+                    <nav class="qde-nav-list">
+                      <span class="qde-nav-item level-1">总览</span>
+                      <span class="qde-nav-item level-1 is-active">核心看板</span>
+                      <span class="qde-nav-item level-1">新进看板</span>
+                      <span class="qde-nav-item level-1">活跃看板</span>
+                      <span class="qde-nav-item level-1">留存看板</span>
+                      <span class="qde-nav-item level-1">付费看板</span>
+                      <span class="qde-nav-item level-1">道具看板</span>
+                      <span class="qde-nav-item level-1">专题分析</span>
+                      <span class="qde-nav-item level-2">看板名称超长超长显示字...</span>
+                      <span class="qde-nav-item level-2">二级文件夹展开</span>
+                      <span class="qde-nav-item level-3">三级看板名称</span>
+                      <span class="qde-nav-item level-3">三级看板名称</span>
+                      <span class="qde-nav-item level-1">专项报告</span>
+                    </nav>
+                  </aside>
+
+                  <main class="qde-main">
+                    <section class="qde-page-header">
+                      <div class="qde-page-title">
+                        <h2>经营分析数据看板</h2>
+                        <p>通过标准 App Shell、真实导航组件与 1308 内容栅格生成的 Dashboard 样例。</p>
+                      </div>
+                      <div class="qde-header-actions">
+                        <span class="qde-shell-btn">隐藏筛选</span>
+                        <span class="qde-shell-btn">导出</span>
+                        <span class="qde-shell-btn">刷新</span>
+                      </div>
+                    </section>
+
+                    <section class="qde-global-filter">
+                      <div class="qde-filter-row">
+                        <span class="qde-filter-chip">产品：全部游戏</span>
+                        <span class="qde-filter-chip">渠道：全部</span>
+                        <span class="qde-filter-chip is-wide">周期：2026-04-24 至 2026-05-01</span>
+                        <span class="qde-filter-chip">口径：自然日</span>
+                      </div>
+                    </section>
+
+                    <section class="qde-metric-grid">
+                      ${shellMetric("活跃用户", "2,846,129", "+12.6%")}
+                      ${shellMetric("新增用户", "184,392", "+8.2%")}
+                      ${shellMetric("付费转化", "7.84%", "-1.3%")}
+                      ${shellMetric("ARPU", "¥42.18", "+5.9%")}
+                    </section>
+
+                    <section class="qde-chart-grid">
+                      ${shellChartCard("核心指标趋势", "PV / UV 与付费指标周期变化", "line")}
+                      ${shellChartCard("渠道贡献分布", "不同渠道新增与转化贡献", "bar")}
+                    </section>
+
+                    <section class="qde-detail-grid">
+                      <article class="qde-card">
+                        <h3 class="qde-card-title">关键项目表现</h3>
+                        <div class="qde-table-preview">
+                          <div class="qde-table-row is-head"><span>项目名称</span><span>活跃用户</span><span>转化率</span><span>状态</span></div>
+                          <div class="qde-table-row"><span>核心看板</span><span>842,193</span><span>8.4%</span><span>正常</span></div>
+                          <div class="qde-table-row"><span>新进看板</span><span>392,011</span><span>6.9%</span><span>观察</span></div>
+                          <div class="qde-table-row"><span>付费看板</span><span>284,119</span><span>11.2%</span><span>正常</span></div>
+                        </div>
+                      </article>
+                      <article class="qde-card">
+                        <h3 class="qde-card-title">业务洞察</h3>
+                        <div class="qde-insight-list">
+                          <p>新增用户增长主要来自渠道 A 与渠道 C。</p>
+                          <p>付费转化短期回落，需要继续观察留存分层。</p>
+                          <p>建议下钻核心看板中的高价值人群。</p>
+                        </div>
+                      </article>
+                    </section>
+                  </main>
+                </div>
+            `;
+          },
+        },
+        table: {
+          stage: "Page / Table Management",
+          score: "78 · pass-with-warnings",
+          status: "pass-with-warnings",
+          checks: [
+            ["pass", "列表页模板结构匹配：Header / Filters / Toolbar / Data Table"],
+            ["pass", "Table 使用 Table Clip Wrapper 包裹，不 scale"],
+            ["pass", "批量操作与视图操作拆成两个 Row"],
+            ["warn", "Pagination 当前是占位，未进入 MVP 组件注册表"],
+            ["warn", "Table 内容仍不可精确编排，需要 TableHeader / TableCell 子组件"],
+          ],
+          actions: {
+            version: "delta-qde-mvp/v1",
+            intent: "生成任务管理列表页",
+            template: "table.management.v1",
+            viewport: { width: 1180, padding: 40 },
+            actions: [
+              { type: "CREATE_TEMPLATE_ROOT", id: "root", name: "Page / Table Management" },
+              { type: "CREATE_SECTION", id: "filters", name: "Section / Filters" },
+              { type: "CREATE_SECTION", id: "toolbar", name: "Section / Toolbar" },
+              { type: "INSERT_COMPONENT", id: "table", component: "Table" },
+              { type: "VALIDATE", checks: ["table-wrapper-exists", "default-text-report"] },
+            ],
+          },
+          tree: [
+            "FRAME / Page / Table Management / layout=VERTICAL",
+            "  FRAME / Header / Page Title / layout=HORIZONTAL",
+            "  FRAME / Section / Filters / layout=HORIZONTAL",
+            "  FRAME / Section / Toolbar / layout=HORIZONTAL",
+            "  FRAME / Card / Data Table / layout=VERTICAL",
+            "    FRAME / Table Clip Wrapper / layout=VERTICAL",
+            "      INSTANCE / Table / Data List",
+            "  FRAME / Footer / Pagination Placeholder / layout=HORIZONTAL",
+          ],
+          render() {
+            return `
+              <div class="frame-header">
+                <div class="title-copy">
+                  <p class="eyebrow">Management Template</p>
+                  <h2>任务管理</h2>
+                  <p>验证筛选、批量操作、表格和分页占位的协议化生成</p>
+                </div>
+                <div class="actions"><span class="btn primary">新建任务</span></div>
+              </div>
+              <div class="filter-bar">
+                ${field("任务名称", "请输入任务名称")}
+                ${field("状态", "请选择状态")}
+                ${field("负责人", "请输入负责人")}
+                ${field("创建时间", "YYYY-MM-DD")}
+                <div class="actions"><span class="btn primary">查询</span><span class="btn">重置</span></div>
+              </div>
+              <div class="toolbar">
+                <div class="row"><span class="btn">批量通过</span><span class="btn">批量驳回</span><span class="tag">已选 12 项</span></div>
+                <div class="row"><span class="btn">导出</span><span class="btn">刷新</span></div>
+              </div>
+              <article class="card">
+                <h3 class="card-title">任务列表</h3>
+                ${table(["任务名称", "状态", "负责人", "更新时间", "操作"])}
+              </article>
+            `;
+          },
+        },
+        dialog: {
+          stage: "Modal / Form Dialog",
+          score: "80 · pass-with-warnings",
+          status: "pass-with-warnings",
+          checks: [
+            ["pass", "弹窗模板结构匹配：Header / Form Body / Footer Actions"],
+            ["pass", "字段均有 Field wrapper，Input / Select 使用注册组件"],
+            ["pass", "Footer actions 右对齐并独立成 Row"],
+            ["warn", "MVP 暂不依赖真实 Dialog 组件，使用语义化 Frame 表达弹窗"],
+            ["warn", "表单校验态与多行输入需要后续补齐"],
+          ],
+          actions: {
+            version: "delta-qde-mvp/v1",
+            intent: "生成新建任务弹窗",
+            template: "dialog.form.v1",
+            viewport: { width: 640, padding: 24 },
+            actions: [
+              { type: "CREATE_TEMPLATE_ROOT", id: "root", name: "Modal / Form Dialog" },
+              { type: "CREATE_SECTION", id: "body", name: "Section / Form Body" },
+              { type: "INSERT_COMPONENT", id: "field_name_input", component: "Input" },
+              { type: "INSERT_COMPONENT", id: "field_type_select", component: "Select" },
+              { type: "VALIDATE", checks: ["dialog-footer-actions", "default-text-report"] },
+            ],
+          },
+          tree: [
+            "FRAME / Modal / Form Dialog / layout=VERTICAL",
+            "  FRAME / Header / Dialog Title / layout=VERTICAL",
+            "  FRAME / Section / Form Body / layout=VERTICAL",
+            "    FRAME / Field / Name / layout=VERTICAL",
+            "    FRAME / Field / Type / layout=VERTICAL",
+            "    FRAME / Field / Owner / layout=VERTICAL",
+            "  FRAME / Footer / Dialog Actions / layout=HORIZONTAL",
+          ],
+          render() {
+            return `
+              <div class="dialog-wrap">
+                <section class="dialog">
+                  <div class="title-copy">
+                    <h2>新建任务</h2>
+                    <p>填写任务基础信息，提交后进入任务列表。</p>
+                  </div>
+                  <div class="form-body">
+                    ${field("任务名称", "请输入任务名称")}
+                    ${field("任务类型", "请选择任务类型")}
+                    ${field("负责人", "请输入负责人")}
+                    <div class="field">
+                      <label>任务描述</label>
+                      <div class="control textarea">请输入任务背景和交付要求</div>
+                    </div>
+                  </div>
+                  <div class="footer-actions"><span class="btn">取消</span><span class="btn primary">提交</span></div>
+                </section>
+              </div>
+            `;
+          },
+        },
+      };
+
+      function field(label, placeholder) {
+        return `<div class="field"><label>${label}</label><div class="control">${placeholder}</div></div>`;
+      }
+
+      function metric(label, value, trend) {
+        return `<article class="card"><div class="metric-label">${label}</div><div class="metric-value">${value}</div><span class="tag">${trend}</span></article>`;
+      }
+
+      function shellMetric(label, value, trend) {
+        return `<article class="qde-card qde-metric-card"><div class="qde-metric-label">${label}</div><div class="qde-metric-number">${value}</div><span class="qde-trend">${trend}</span></article>`;
+      }
+
+      function shellChartCard(title, subtitle, type) {
+        const body =
+          type === "bar"
+            ? `<div class="qde-chart-body"><div class="qde-bars">${[54, 76, 42, 88, 65, 72, 58, 91]
+                .map((height) => `<span style="height:${height}%"></span>`)
+                .join("")}</div></div>`
+            : `<div class="qde-chart-body"><div class="qde-line"></div></div>`;
+        return `<article class="qde-card qde-chart-card"><h3 class="qde-card-title">${title}</h3><div class="qde-card-subtitle">${subtitle}</div>${body}</article>`;
+      }
+
+      function chart() {
+        const heights = [42, 56, 48, 70, 84, 78, 96];
+        return `<div class="chart"><div class="bars">${heights
+          .map(
+            (h) =>
+              `<div class="bar-pair"><span class="bar" style="height:${h}%"></span><span class="bar alt" style="height:${Math.max(30, h - 18)}%"></span></div>`,
+          )
+          .join("")}</div><div class="trend-line"></div></div>`;
+      }
+
+      function ranking() {
+        return `<div class="ranking">${[
+          ["搜索页", 92],
+          ["详情页", 82],
+          ["支付页", 68],
+          ["活动页", 54],
+          ["帮助中心", 42],
+        ]
+          .map(
+            ([name, value]) =>
+              `<div class="rank-row"><span>${name}</span><div class="track"><div class="fill" style="width:${value}%"></div></div></div>`,
+          )
+          .join("")}</div>`;
+      }
+
+      function table(headers) {
+        const rows = ["审批流配置", "运营活动", "用户分群", "数据同步"];
+        return `<table><thead><tr>${headers.map((h) => `<th>${h}</th>`).join("")}</tr></thead><tbody>${rows
+          .map(
+            (r, index) =>
+              `<tr><td>${r}</td><td><span class="tag">${index % 2 ? "处理中" : "正常"}</span></td><td>Andrea</td><td>2026-05-01</td><td><span style="color:var(--blue);font-weight:800">查看</span></td></tr>`,
+          )
+          .join("")}</tbody></table>`;
+      }
+
+      const previewRoot = document.getElementById("previewRoot");
+      const checks = document.getElementById("checks");
+      const actionsJson = document.getElementById("actionsJson");
+      const nodeTree = document.getElementById("nodeTree");
+      const scorePill = document.getElementById("scorePill");
+      const reportStatus = document.getElementById("reportStatus");
+      const stageName = document.getElementById("stageName");
+
+      function renderTemplate(key) {
+        const template = templates[key];
+        previewRoot.className = `figma-frame ${template.previewClass || ""}`.trim();
+        previewRoot.innerHTML = template.render();
+        stageName.textContent = template.stage;
+        scorePill.textContent = template.score;
+        reportStatus.textContent = template.status;
+        actionsJson.textContent = JSON.stringify(template.actions, null, 2);
+        nodeTree.textContent = template.tree.join("\\n");
+        checks.innerHTML = template.checks
+          .map(([type, text]) => {
+            const dotClass = type === "warn" ? "check-dot warning-dot" : "check-dot";
+            const mark = type === "warn" ? "!" : "✓";
+            return `<li><span class="${dotClass}">${mark}</span><span>${text}</span></li>`;
+          })
+          .join("");
+      }
+
+      document.querySelectorAll(".tab").forEach((button) => {
+        button.addEventListener("click", () => {
+          document.querySelectorAll(".tab").forEach((tab) => tab.classList.remove("is-active"));
+          button.classList.add("is-active");
+          renderTemplate(button.dataset.template);
+        });
+      });
+
+      renderTemplate("dashboard");
+    </script>
+  </body>
+</html>
